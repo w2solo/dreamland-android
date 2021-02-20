@@ -34,8 +34,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation "androidx.appcompat:appcompat:$ANDROID_X_COMPAT_VERSION"
+    implementation "com.google.android.material:material:$MD_VERSION"
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"

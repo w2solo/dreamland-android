@@ -4,6 +4,7 @@ buildscript {
         kotlin_version = "1.3.72"
         CONSTRAINT_LAYOUT_VERSION = '1.1.3'
         ANDROID_X_COMPAT_VERSION = '1.0.2'
+        MD_VERSION='1.3.0'
 
         MIN_SDK_VERSION = 21
         TARGET_SDK_VERSION = 29
@@ -12,6 +13,7 @@ buildscript {
         glide_version = '4.11.0'
 
         room_version = "2.2.5"
+
     }
     repositories {
         google()
