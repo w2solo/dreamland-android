@@ -26,13 +26,14 @@
         android:gravity="center_vertical"
         android:padding="@dimen/keyline_vertical">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/settings_account_avatar"
             android:layout_width="@dimen/view_size_48"
             android:layout_height="@dimen/view_size_48"
             android:contentDescription="@string/account_avatar_contd"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_avatar_default" />
+            android:src="@mipmap/ic_launcher"
+            app:shapeAppearance="@style/TopicAvatarStyle" />
 
         <LinearLayout
             android:layout_width="match_parent"

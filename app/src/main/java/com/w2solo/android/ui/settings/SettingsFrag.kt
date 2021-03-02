@@ -4,6 +4,8 @@ import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.w2solo.android.R
 import com.w2solo.android.app.account.AccountManager
 import com.w2solo.android.app.broadcast.AppBroadcast
@@ -44,6 +46,11 @@ class SettingsFrag : BaseFragment() {
             val user = AccountManager.getInstance().loginUser
             name?.text = user?.name
             avatar?.setImageBitmap(null)
+            Glide.with(context!!)
+                .load(user?.avatar_url)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.ic_avatar_default)
+                .into(avatar!!)
         } else {
             name?.setText(R.string.click_to_login)
             avatar?.setImageResource(R.drawable.ic_avatar_default)
