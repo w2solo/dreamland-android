@@ -1,5 +1,19 @@
 package com.w2solo.android.data.entity
 
-data class User(
-    val id: Long, val login: String, val name: String, val avatar_url: String
-)
+import com.google.gson.annotations.SerializedName
+import com.w2solo.android.app.account.IAccount
+
+public class User : IAccount {
+
+    @SerializedName("id")
+    var id: Long = 0
+
+    @SerializedName("login")
+    var login: String? = null
+
+    @SerializedName("name")
+    var name: String? = null
+
+    @SerializedName("avatar_url")
+    var avatar_url: String? = null
+}

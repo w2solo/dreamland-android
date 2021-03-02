@@ -9,7 +9,7 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
 /**
- * Created by tangyuchun on 2018/4/16.
+ * Created by github.com/litang0908 on 2018/4/16.
  */
 
 public class LifeCycleActivity extends AppCompatActivity implements LifecycleOwner {
