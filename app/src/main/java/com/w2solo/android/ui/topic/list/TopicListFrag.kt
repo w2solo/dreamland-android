@@ -1,6 +1,8 @@
 package com.w2solo.android.ui.topic.list
 
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -25,6 +27,10 @@ class TopicListFrag : BaseFragment(), TopicListContract.View {
         rv = fview(R.id.recyclerView)!!
         rv.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rv.adapter = adapter
+
+        val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        divider.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.common_divider)!!)
+        rv.addItemDecoration(divider)
 
         refreshLayout = fview(R.id.swipe_refresh_layout)!!
         refreshLayout.setOnRefreshListener {

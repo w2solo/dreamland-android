@@ -21,7 +21,7 @@ class TopicVH(itemView: View) : EasyHolder(itemView) {
         val user = topic.user
         if (user != null) {
             sb.append("@${user.name}")
-                .append("-")
+                .append("·")
         }
         if (topic.repliesCount > 0) {
             sb.append("阅读 ")

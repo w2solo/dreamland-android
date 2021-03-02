@@ -17,7 +17,7 @@ class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.P
             pageIndex = 0
         }
         val offset = pageIndex * pageSize
-        val disposable = Requester.apiService().getTopicList(offset, pageSize, 49)
+        val disposable = Requester.apiService().getTopicList(offset, pageSize)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
