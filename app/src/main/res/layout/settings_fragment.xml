@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/activity_appbar_layout_id"
+        style="@style/AppBarLayoutStyle">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@id/activity_toolbar_id"
+            style="@style/ToolBarStyle"
+            app:navigationIcon="@null"
+            app:title="@string/tab_me" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/settings_account_layout"
+        style="@style/AppCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/keyline_vertical"
+        android:background="@drawable/bg_selector_surface"
+        android:gravity="center_vertical"
+        android:padding="@dimen/keyline_vertical">
+
+        <ImageView
+            android:id="@+id/settings_account_avatar"
+            android:layout_width="@dimen/view_size_48"
+            android:layout_height="@dimen/view_size_48"
+            android:contentDescription="@string/account_avatar_contd"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_avatar_default" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/keyline_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/settings_account_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/click_to_login" />
+
+            <TextView
+                style="@style/CommonDescAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="w2solo.com" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/settings_rules"
+        style="@style/OptionItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/keyline_8"
+        android:text="@string/w2solo_rules" />
+
+    <TextView
+        android:id="@+id/settings_group"
+        style="@style/OptionItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1px"
+        android:text="@string/group_guide" />
+
+    <TextView
+        style="@style/CommonDescAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="6"
+        android:padding="40dp"
+        android:singleLine="false"
+        android:text="@string/w2solo_intro" />
+</LinearLayout>

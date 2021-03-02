@@ -26,4 +26,38 @@
         <item name="android:layout_weight">1</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+
+    <style name="AppCardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_selector_white_card_fullround</item>
+    </style>
+
+    <style name="AppCardView.TopRound" parent="@style/AppCardView">
+        <item name="android:background">@drawable/bg_selector_white_card_topround</item>
+    </style>
+
+    <style name="OptionItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">@dimen/keyline_horizontal</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:paddingLeft">@dimen/keyline_horizontal</item>
+        <item name="android:paddingRight">@dimen/keyline_horizontal</item>
+        <item name="android:paddingTop">@dimen/keyline_vertical</item>
+        <item name="android:paddingBottom">@dimen/keyline_vertical</item>
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+        <item name="android:background">@drawable/bg_selector_surface</item>
+    </style>
+
+    <!--水平进度条-->
+    <style name="AppProgressBar_Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/horizontal_progressbar</item>
+        <item name="android:max">100</item>
+        <item name="android:indeterminate">false</item>
+        <item name="android:layout_height">3dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
 </resources>

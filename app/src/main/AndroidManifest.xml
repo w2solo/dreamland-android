@@ -23,6 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.commonfrag.CommonFragActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.webview.WebViewActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

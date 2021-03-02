@@ -21,6 +21,7 @@ class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.P
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                pageIndex++
                 view?.onGetList((it as TopicListBean).list, isRefresh)
             }) {
                 view?.onGetList(null, isRefresh)

@@ -8,13 +8,13 @@ public interface IAccountKeeper<T extends IAccount> {
 
     T getCurrentUser();
 
-    String getUserToken();
+    Token getUserToken();
 
-    boolean onLogin(T user, String token);
+    boolean onLogin(T user, Token token);
 
     boolean onUpdate(T user);
 
     boolean onLogout();
 
-    boolean updateToken(String token);
+    boolean updateToken(Token token);
 }

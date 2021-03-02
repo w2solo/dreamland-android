@@ -35,9 +35,9 @@ object BroadcastHelper {
      * UI注册广播监听事件
      *
      * @param receiver
-     * @param action
+     * @param actions
      */
-    fun registerBroadcast(receiver: BaseBroadcastReceiver?, actions: Array<String>?) {
+    fun registerBroadcast(receiver: BaseBroadcastReceiver?, actions: Array<out String>?) {
         if (receiver == null || actions == null) {
             Logger.e(TAG, "receiver is null")
             return

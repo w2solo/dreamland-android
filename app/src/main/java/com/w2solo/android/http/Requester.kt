@@ -1,9 +1,11 @@
 package com.w2solo.android.http
 
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 open class Requester {
     companion object {
@@ -13,7 +15,9 @@ open class Requester {
             if (retrofit == null) {
                 val client = OkHttpClient.Builder()
                     //自定义拦截器用于日志输出
-                    .addInterceptor(LogInterceptor())
+                    .addInterceptor(
+                        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                    )
                     .build()
                 retrofit = Retrofit.Builder().baseUrl(baseUrl)
                     //格式转换

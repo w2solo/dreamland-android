@@ -8,7 +8,9 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.w2solo.android.R;
+import com.w2solo.android.app.broadcast.AppBroadcast;
 import com.w2solo.android.data.entity.User;
+import com.w2solo.android.ui.base.broadcast.BroadcastHelper;
 import com.w2solo.android.utils.Logger;
 
 import java.util.ArrayList;
@@ -69,7 +71,7 @@ public class AccountManager {
     }
 
     @Nullable
-    public String getUserToken() {
+    public Token getUserToken() {
         return keeper.getUserToken();
     }
 
@@ -78,19 +80,20 @@ public class AccountManager {
      *
      * @param userInfo 当前登录用户信息
      */
-    public boolean onLogin(User userInfo, String token) {
+    public boolean onLogin(User userInfo, Token token) {
         boolean result = keeper.onLogin(userInfo, token);
+        BroadcastHelper.INSTANCE.sendBroadcast(AppBroadcast.ACCOUNT_CHANGE);
         triggerCallback(true);
         return result;
     }
 
-    public boolean updateToken(String token) {
+    public boolean updateToken(Token token) {
         return keeper.updateToken(token);
     }
 
     public boolean updateUserInfo(User userInfo) {
         boolean result = keeper.onUpdate(userInfo);
-//        AppBroadcastSender.sendEmptyAction(AppBroadcastSender.ACTION_ACCOUNT_INFO_CHANGED);
+        BroadcastHelper.INSTANCE.sendBroadcast(AppBroadcast.ACCOUNT_CHANGE);
         return result;
     }
 
@@ -102,7 +105,7 @@ public class AccountManager {
         //清空账号信息
         boolean result = keeper.onLogout();
         Logger.INSTANCE.d(TAG, "退出登录 isLogin " + isLogin() + "  clearResult " + result);
-//        AppBroadcastSender.sendAccountLoginChanged(false);
+        BroadcastHelper.INSTANCE.sendBroadcast(AppBroadcast.ACCOUNT_CHANGE);
         triggerCallback(false);
         return true;
     }

@@ -12,5 +12,9 @@
     <dimen name="view_size_28">32dp</dimen>
     <dimen name="view_size_48">48dp</dimen>
 
+    <dimen name="card_round_4dp">4dp</dimen>
+    <dimen name="card_round_corner">8dp</dimen>
+    <dimen name="card_round_corner_large">12dp</dimen>
+    <dimen name="card_round_corner_round">32dp</dimen>
     <dimen name="toolbar_elevation">2dp</dimen>
 </resources>

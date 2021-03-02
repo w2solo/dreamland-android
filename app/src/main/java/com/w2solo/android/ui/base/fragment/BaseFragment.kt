@@ -57,7 +57,7 @@ abstract class BaseFragment : LifeCycleFragment() {
      */
     protected fun registerBroadcastReceiver(
         receiver: BaseBroadcastReceiver?,
-        actions: Array<String>
+        vararg actions: String
     ): Boolean {
         if (receiver == null) {
             return false

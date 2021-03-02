@@ -1,26 +1,41 @@
 package com.w2solo.android.http
 
+import com.w2solo.android.app.account.Token
 import com.w2solo.android.http.result.TopicBean
 import com.w2solo.android.http.result.TopicListBean
+import com.w2solo.android.http.result.UserBean
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
     companion object {
         //此类接口的基地址
-        val baseUrl = "https://indiehackers.net/api/v3/"
+        val baseUrl = "https://w2solo.com/"
     }
 
     //话题列表：最新
-    @GET("topics?type=recent")
+    @GET("api/v3/topics?type=recent")
     fun getTopicList(
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): Observable<TopicListBean>
 
     //话题详情
-    @GET("topics/")
+    @GET("api/v3/topics/")
     fun getTopicDetails(@Query("topic_id") topic_id: Int): Observable<TopicBean>
+
+    @FormUrlEncoded
+    @POST("oauth/token?")
+    fun getAccessToken(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("client_id") client_id: String,
+        @Field("client_secret") client_secret: String,
+        @Field("grant_type") grant_type: String = "password"
+    ): Observable<Token>
+
+    @GET("api/v3/users/me")
+    @Headers("Content-Type:application/json; charset=utf-8")
+    fun getLoginUserInfo(@Header("Authorization") token: String): Observable<UserBean>
 }

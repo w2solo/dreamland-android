@@ -1,6 +1,7 @@
 package com.w2solo.android.app.account
 
 import android.text.TextUtils
+import com.google.gson.Gson
 import com.w2solo.android.module.keyvalue.KV
 
 abstract class DefaultAccountKeeper<T : IAccount> : IAccountKeeper<T> {
@@ -9,9 +10,11 @@ abstract class DefaultAccountKeeper<T : IAccount> : IAccountKeeper<T> {
     private val USER_SEC_TOKEN = "login_user_tokenv2"
 
     private var userInfo: T? = null
+    private var curToken: Token? = null
 
     init {
         userInfo = readUserInfo()
+        curToken = userToken
     }
 
     abstract fun parseAccountFromKeepInfo(value: String?): T?
@@ -22,22 +25,19 @@ abstract class DefaultAccountKeeper<T : IAccount> : IAccountKeeper<T> {
         return userInfo
     }
 
-    override fun onLogin(user: T?, token: String?): Boolean {
-        userInfo = user
+    override fun onLogin(user: T?, token: Token?): Boolean {
         return saveUserInfo(user) && saveUserToken(token)
     }
 
     override fun onUpdate(user: T?): Boolean {
-        userInfo = user
         return saveUserInfo(user)
     }
 
     override fun onLogout(): Boolean {
-        userInfo = null
         return saveUserInfo(null) && saveUserToken(null)
     }
 
-    override fun updateToken(token: String?): Boolean {
+    override fun updateToken(token: Token?): Boolean {
         return saveUserToken(token)
     }
 
@@ -48,15 +48,28 @@ abstract class DefaultAccountKeeper<T : IAccount> : IAccountKeeper<T> {
         } else parseAccountFromKeepInfo(value)
     }
 
-    private fun saveUserToken(token: String?): Boolean {
-        return KV.saveSysValue(USER_SEC_TOKEN, token)
+    private fun saveUserToken(token: Token?): Boolean {
+        this.curToken = token
+        var value = "";
+        if (token != null) {
+            value = Gson().toJson(token)
+        }
+        return KV.saveSysValue(USER_SEC_TOKEN, value)
     }
 
-    override fun getUserToken(): String? {
-        return KV.getSysStr(USER_SEC_TOKEN, "")
+    override fun getUserToken(): Token? {
+        if (curToken != null) {
+            return curToken
+        }
+        val value = KV.getSysStr(USER_SEC_TOKEN, "")
+        if (!TextUtils.isEmpty(value)) {
+            curToken = Gson().fromJson(value, Token::class.java)
+        }
+        return curToken
     }
 
     private fun saveUserInfo(user: T?): Boolean {
+        userInfo = user
         return KV.saveSysValue(USER_INFO, convertAccountToKeepInfo(user))
     }
 }

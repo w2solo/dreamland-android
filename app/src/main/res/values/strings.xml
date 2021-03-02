@@ -5,10 +5,24 @@
     <string name="tab_discover">发现</string>
     <string name="tab_me">我的</string>
 
+    <!--    Settings-->
+    <string name="w2solo_rules">社区规则</string>
+    <string name="group_guide">加入社群</string>
+    <string name="w2solo_intro">「w2solo.com」独立开发者社区，由众多独立开发者维护，致力于搭建和维护好国内独立开发者圈子和氛围。</string>
+
     <!--    Account-->
     <string name="error_not_login">请先登录</string>
+    <string name="click_to_login">点击登录</string>
+    <string name="account_avatar_contd">头像</string>
+
+    <string name="title_login">登录 W2Solo 账号</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="hint_account">用户ID/邮箱</string>
+    <string name="hint_pwd">密码</string>
 
     <!--    Common-->
     <string name="back">返回</string>
     <string name="close">关闭</string>
+    <string name="error_invalid_params">参数错误</string>
 </resources>
