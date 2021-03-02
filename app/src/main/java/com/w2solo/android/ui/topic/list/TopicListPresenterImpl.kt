@@ -9,10 +9,15 @@ import io.reactivex.schedulers.Schedulers
 class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.Presenter,
     BasePresenter<TopicListContract.View>(view) {
 
+    private var isLoading = false
     private val pageSize = 20
     private var pageIndex = 0
 
     override fun loadList(isRefresh: Boolean) {
+        if (isLoading) {
+            return
+        }
+        isLoading = true
         if (isRefresh) {
             pageIndex = 0
         }
@@ -21,9 +26,11 @@ class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.P
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                isLoading = false
                 pageIndex++
                 view?.onGetList((it as TopicListBean).list, isRefresh)
             }) {
+                isLoading = false
                 view?.onGetList(null, isRefresh)
             }
         runDisposable(disposable)

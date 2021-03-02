@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.w2solo.android.R
 import com.w2solo.android.data.entity.Topic
+import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.fragment.BaseFragment
 
-class TopicListFrag : BaseFragment(), TopicListContract.View {
+class TopicListFrag : BaseFragment(), TopicListContract.View, IScrollToTop {
     private val dataList = arrayListOf<Topic>()
 
     private lateinit var refreshLayout: SwipeRefreshLayout
@@ -18,14 +19,16 @@ class TopicListFrag : BaseFragment(), TopicListContract.View {
     private val adapter = TopicListAdapter(dataList)
     private val presenter = TopicListPresenterImpl(this)
 
+    private val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
     override fun getLayout() = R.layout.home_topic_list_fragment
 
     override fun initViews() {
         fview<Toolbar>(R.id.home_topic_list)?.setOnClickListener {
-            rv.smoothScrollToPosition(0)
+            scrollToTop()
         }
         rv = fview(R.id.recyclerView)!!
-        rv.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        rv.layoutManager = layoutManager
         rv.adapter = adapter
 
         val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
@@ -39,6 +42,17 @@ class TopicListFrag : BaseFragment(), TopicListContract.View {
         addLifecycleObserver(presenter)
         refreshLayout.isRefreshing = true
         presenter.loadList(true)
+
+        rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE
+                    && layoutManager.findLastVisibleItemPosition() == dataList.size - 1
+                ) {
+                    presenter.loadList(false)
+                }
+            }
+        })
     }
 
     override fun onGetList(newList: List<Topic>?, isRefresh: Boolean) {
@@ -56,6 +70,15 @@ class TopicListFrag : BaseFragment(), TopicListContract.View {
             val pos = dataList.size
             dataList.addAll(newList)
             adapter.notifyItemRangeInserted(pos, newList.size)
+        }
+    }
+
+    override fun scrollToTop() {
+        val first = layoutManager.findFirstVisibleItemPosition()
+        if (first > 40) {
+            rv.scrollToPosition(0)
+        } else {
+            rv.smoothScrollToPosition(0)
         }
     }
 }
