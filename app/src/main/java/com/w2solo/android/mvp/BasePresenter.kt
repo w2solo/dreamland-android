@@ -2,8 +2,13 @@ package com.w2solo.android.mvp
 
 import androidx.lifecycle.LifecycleOwner
 import com.w2solo.android.ui.base.lifecycle.ILifecycleObserver
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
-abstract class BasePresenter<V : IView>(var view: V? = null) : IPresenter<V>, ILifecycleObserver {
+abstract class BasePresenter<V : IView>(var view: V?) : IPresenter<V>, ILifecycleObserver {
+
+    private var compositeDisposable: CompositeDisposable = CompositeDisposable()
+
     override fun onCreate(owner: LifecycleOwner?) {
     }
 
@@ -20,5 +25,14 @@ abstract class BasePresenter<V : IView>(var view: V? = null) : IPresenter<V>, IL
     }
 
     override fun onDestroy(owner: LifecycleOwner?) {
+        unSubscription()
+    }
+
+    fun runDisposable(disposable: Disposable) {
+        compositeDisposable.add(disposable)
+    }
+
+    open fun unSubscription() {
+        compositeDisposable.clear()
     }
 }

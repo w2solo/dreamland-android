@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CommonTitleAppearance">
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+    </style>
+
+    <style name="CommonDescAppearance">
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">@dimen/text_size_desc</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="BottomTabText">
+        <item name="android:textColor">@color/text_color_desc_accent</item>
+        <item name="android:textSize">@dimen/text_size_desc</item>
+    </style>
+
+    <style name="BottomTabItem">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">@dimen/keyline_8</item>
+        <item name="android:paddingBottom">@dimen/keyline_8</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+</resources>

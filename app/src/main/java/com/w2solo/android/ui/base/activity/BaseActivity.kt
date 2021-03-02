@@ -47,8 +47,7 @@ abstract class BaseActivity : BaseLifeCycleActivity() {
      * @param actions 要处理的操作
      */
     protected fun registerBroadcastReceiver(
-        receiver: BaseBroadcastReceiver?, actions: Array<String>
-    ): Boolean {
+        receiver: BaseBroadcastReceiver?, actions: Array<String>): Boolean {
         if (receiver == null) {
             return false
         }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Toolbar的样式-->
+    <style name="ToolBarStyle" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:navigationIcon">@drawable/ic_toolbar_back_white_24dp</item>
+        <item name="navigationIcon">@drawable/ic_toolbar_back_white_24dp</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="title">@null</item>
+        <item name="android:elevation">@dimen/toolbar_elevation</item>
+        <!--从 24.0.0 开始，Toolbar的标题和返回键之间多了 16dp的间距，通过此属性可以调整-->
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="titleTextAppearance">@style/ToolBarTitleTextAppearance</item>
+
+        <item name="navigationContentDescription">@string/back</item>
+        <item name="android:navigationContentDescription">@string/back</item>
+    </style>
+
+    <!--    &lt;!&ndash; TabLayout的样式&ndash;&gt;-->
+    <!--    <style name="TabLayoutInToolBar" parent="Widget.MaterialComponents.TabLayout.PrimarySurface">-->
+    <!--        <item name="android:layout_width">match_parent</item>-->
+    <!--        <item name="android:layout_height">wrap_content</item>-->
+    <!--        <item name="tabUnboundedRipple">true</item>-->
+    <!--        <item name="tabTextAppearance">@style/TabTextAppearanceInToolBar</item>-->
+    <!--        <item name="tabTextColor">@color/md_mtrl_tabs_icon_color_selector_colored</item>-->
+    <!--    </style>-->
+
+    <!--    &lt;!&ndash;    Toolbar中的TabLayout，将字体调大&ndash;&gt;-->
+    <!--    <style name="TabTextAppearanceInToolBar">-->
+    <!--        <item name="android:textSize">@dimen/text_size_18</item>-->
+    <!--    </style>-->
+
+    <style name="ToolbarTitleView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textAppearance">@style/ToolBarTitleTextAppearance</item>
+    </style>
+
+    <style name="ToolBarTitleTextAppearance" parent="@style/TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">@dimen/text_size_18</item>
+    </style>
+
+    <style name="ToolBarSubTitleTextAppearance">
+        <item name="android:textSize">@dimen/text_size_desc</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="AppBarLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:elevation">@dimen/toolbar_elevation</item>
+        <!--        需要使用 android:elevation 才能使阴影生效，如果使用 app:elevation 则无效-->
+    </style>
+</resources>

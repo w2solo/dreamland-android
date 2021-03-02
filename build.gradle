@@ -4,6 +4,7 @@ buildscript {
         kotlin_version = "1.3.72"
         CONSTRAINT_LAYOUT_VERSION = '1.1.3'
         ANDROID_X_COMPAT_VERSION = '1.0.2'
+        ANDROID_X_BASE_VERSION = '1.0.0'
         MD_VERSION='1.3.0'
 
         MIN_SDK_VERSION = 21

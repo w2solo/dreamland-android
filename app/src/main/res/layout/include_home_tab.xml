@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:showIn="@layout/home_activity">
+
+    <LinearLayout
+        android:id="@+id/tab_topics"
+        style="@style/BottomTabItem">
+
+        <ImageView
+            android:layout_width="@dimen/view_size_28"
+            android:layout_height="@dimen/view_size_28"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            style="@style/BottomTabText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_4"
+            android:text="@string/app_name" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/tab_discover"
+        style="@style/BottomTabItem">
+
+        <ImageView
+            android:layout_width="@dimen/view_size_28"
+            android:layout_height="@dimen/view_size_28"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            style="@style/BottomTabText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_4"
+            android:text="@string/tab_discover" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_me"
+        style="@style/BottomTabItem">
+
+        <ImageView
+            android:layout_width="@dimen/view_size_28"
+            android:layout_height="@dimen/view_size_28"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            style="@style/BottomTabText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_4"
+            android:text="@string/tab_me" />
+    </LinearLayout>
+</LinearLayout>

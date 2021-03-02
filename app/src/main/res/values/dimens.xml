@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="keyline_4">4dp</dimen>
+    <dimen name="keyline_8">8dp</dimen>
+    <dimen name="keyline_vertical">12dp</dimen>
+    <dimen name="keyline_horizontal">12dp</dimen>
+
+    <dimen name="text_size_desc">12sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+
+    <dimen name="view_size_28">32dp</dimen>
+    <dimen name="view_size_48">48dp</dimen>
+
+    <dimen name="toolbar_elevation">2dp</dimen>
+</resources>
