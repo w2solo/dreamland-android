@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_selector_surface"
     android:orientation="vertical"
     android:paddingLeft="@dimen/keyline_horizontal"
     android:paddingTop="@dimen/keyline_vertical"
@@ -15,7 +16,7 @@
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:singleLine="true"
-        tools:text="Android 下拉刷新 SwipeRefreshLayout 的实现SwipeRefreshLayout 的实现SwipeRefreshLayout 的实现" />
+        tools:text="Android 下拉刷新 Swip" />
 
     <TextView
         android:id="@+id/topic_info"

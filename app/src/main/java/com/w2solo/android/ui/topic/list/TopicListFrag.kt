@@ -36,10 +36,10 @@ class TopicListFrag : BaseFragment(), TopicListContract.View {
     }
 
     override fun onGetList(newList: List<Topic>?, isRefresh: Boolean) {
+        if (isRefresh) {
+            refreshLayout.isRefreshing = false
+        }
         if (newList == null) {
-            if (isRefresh) {
-                refreshLayout.isRefreshing = false
-            }
             return
         }
         if (isRefresh) {

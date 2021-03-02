@@ -37,6 +37,7 @@ class LoginPresenterImpl(view: LoginContract.View) : BasePresenter<LoginContract
                 view?.onLogin(null)
             }
         runDisposable(disposable)
+
     }
 
     private fun onLoginSuccess(token: Token, user: User) {

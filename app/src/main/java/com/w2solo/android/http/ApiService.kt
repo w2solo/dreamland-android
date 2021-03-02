@@ -15,10 +15,11 @@ interface ApiService {
     }
 
     //话题列表：最新
-    @GET("api/v3/topics?type=recent")
+    @GET("api/v3/topics?type=last")
     fun getTopicList(
         @Query("offset") offset: Int,
-        @Query("limit") limit: Int
+        @Query("limit") limit: Int,
+        @Query("node_id") node_id: Int
     ): Observable<TopicListBean>
 
     //话题详情
@@ -36,6 +37,5 @@ interface ApiService {
     ): Observable<Token>
 
     @GET("api/v3/users/me")
-    @Headers("Content-Type:application/json; charset=utf-8")
     fun getLoginUserInfo(@Header("Authorization") token: String): Observable<UserBean>
 }

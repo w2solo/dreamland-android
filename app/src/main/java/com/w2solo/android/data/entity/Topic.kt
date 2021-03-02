@@ -42,7 +42,7 @@ data class Topic(
     @ColumnInfo(name = "hits") val hits: Int,
 
     @SerializedName("user")
-    @Embedded val user: User
+    @Embedded val user: User?
 ) {
     @PrimaryKey
     @ColumnInfo(name = "id")

@@ -15,9 +15,8 @@ open class Requester {
             if (retrofit == null) {
                 val client = OkHttpClient.Builder()
                     //自定义拦截器用于日志输出
-                    .addInterceptor(
-                        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-                    )
+                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .addInterceptor(ApiInterceptor())
                     .build()
                 retrofit = Retrofit.Builder().baseUrl(baseUrl)
                     //格式转换
