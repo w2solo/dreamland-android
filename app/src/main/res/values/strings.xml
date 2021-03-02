@@ -5,7 +5,10 @@
     <string name="tab_discover">发现</string>
     <string name="tab_me">我的</string>
 
-<!--    Common-->
+    <!--    Account-->
+    <string name="error_not_login">请先登录</string>
+
+    <!--    Common-->
     <string name="back">返回</string>
     <string name="close">关闭</string>
 </resources>
