@@ -30,7 +30,7 @@
 
         <!--        额外增加 Caption 和 Desc 文字颜色 -->
         <!--        textColorPrimary 默认就是 colorOnSurface，无需更更改-->
-        <item name="android:textColorSecondary">#FF9E9E9E</item>
+        <item name="android:textColorSecondary">#B8B7B7</item>
         <item name="android:textColor">?colorOnBackground</item>
 
         <!--        EditText文字顏色-->

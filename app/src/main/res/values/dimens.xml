@@ -9,7 +9,7 @@
     <dimen name="text_size_desc">12sp</dimen>
     <dimen name="text_size_18">18sp</dimen>
 
-    <dimen name="view_size_28">32dp</dimen>
+    <dimen name="view_size_28">28dp</dimen>
     <dimen name="view_size_48">48dp</dimen>
 
     <dimen name="card_round_4dp">4dp</dimen>
