@@ -1,6 +1,7 @@
 package com.w2solo.android.ui.topic.list
 
 import com.w2solo.android.http.Requester
+import com.w2solo.android.http.result.TopicListBean
 import com.w2solo.android.mvp.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -19,8 +20,10 @@ class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.P
         val disposable = Requester.apiService().getTopicList(offset, pageSize)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { data ->
-                view?.onGetList(data.list, isRefresh)
+            .subscribe({
+                view?.onGetList((it as TopicListBean).list, isRefresh)
+            }) {
+                view?.onGetList(null, isRefresh)
             }
         runDisposable(disposable)
     }

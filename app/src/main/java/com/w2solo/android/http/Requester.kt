@@ -15,7 +15,7 @@ open class Requester {
                     //自定义拦截器用于日志输出
                     .addInterceptor(LogInterceptor())
                     .build()
-                val retrofit = Retrofit.Builder().baseUrl(baseUrl)
+                retrofit = Retrofit.Builder().baseUrl(baseUrl)
                     //格式转换
                     .addConverterFactory(GsonConverterFactory.create())
                     //正常的retrofit返回的是call，此方法用于将call转化成Rxjava的Observable或其他类型

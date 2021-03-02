@@ -30,8 +30,9 @@ class TopicListFrag : BaseFragment(), TopicListContract.View {
         refreshLayout.setOnRefreshListener {
             presenter.loadList(true)
         }
-        refreshLayout.isRefreshing = true
         addLifecycleObserver(presenter)
+        refreshLayout.isRefreshing = true
+        presenter.loadList(true)
     }
 
     override fun onGetList(newList: List<Topic>?, isRefresh: Boolean) {
