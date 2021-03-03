@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import com.w2solo.android.R;
 import com.w2solo.android.ui.account.LoginFragment;
+import com.w2solo.android.ui.topic.detail.TopicDetailFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,7 @@ class CommonFragPageConfigs {
 
     static {
         configs.put(R.string.title_login, LoginFragment.class);
+        configs.put(R.string.title_topic_detail, TopicDetailFragment.class);
     }
 
     @Nullable

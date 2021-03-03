@@ -8,6 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.w2solo.android.R
 import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.adapter.EasyHolder
+import com.w2solo.android.ui.topic.detail.TopicDetailFragment
 
 class TopicVH(itemView: View) : EasyHolder(itemView) {
 
@@ -19,13 +20,11 @@ class TopicVH(itemView: View) : EasyHolder(itemView) {
         if (topic == null) {
             return
         }
-
         Glide.with(itemView.context)
             .load(topic.user?.avatar_url)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(R.drawable.ic_avatar_default)
             .into(avatar)
-
         title.text = topic.title
 
         val sb = StringBuilder()
@@ -39,5 +38,8 @@ class TopicVH(itemView: View) : EasyHolder(itemView) {
                 .append("${topic.repliesCount}")
         }
         info.text = sb
+        itemView.setOnClickListener {
+            TopicDetailFragment.showTopic(it.context, topic)
+        }
     }
 }

@@ -14,12 +14,6 @@ interface ApiService {
         val baseUrl = "https://w2solo.com/"
     }
 
-    //话题列表：最新
-    @GET("api/v3/topics?type=last")
-    fun getTopicList(
-        @Query("offset") offset: Int, @Query("limit") limit: Int
-    ): Observable<TopicListBean>
-
     //话题详情
     @GET("api/v3/topics/")
     fun getTopicDetails(@Query("topic_id") topic_id: Int): Observable<TopicBean>
@@ -36,4 +30,14 @@ interface ApiService {
 
     @GET("api/v3/users/me")
     fun getLoginUserInfo(@Header("Authorization") token: String): Observable<UserBean>
+
+    //话题列表：最新
+    @GET("api/v3/topics?type=last")
+    fun getTopicList(
+        @Query("offset") offset: Int, @Query("limit") limit: Int
+    ): Observable<TopicListBean>
+
+    //话题详情
+    @GET("api/v3/topics/{topic_id}")
+    fun getTopicDetail(@Path("topic_id") topic_id: Long): Observable<TopicBean>
 }

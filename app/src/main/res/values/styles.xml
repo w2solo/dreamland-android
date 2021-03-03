@@ -77,4 +77,9 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
     </style>
+
+    <style name="CommentAvatarStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/avatar_size_8</item>
+    </style>
 </resources>

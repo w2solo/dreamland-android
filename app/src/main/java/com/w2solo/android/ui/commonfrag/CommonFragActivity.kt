@@ -14,7 +14,6 @@ import com.w2solo.android.ui.base.fragment.BaseFragment
 
 class CommonFragActivity : BaseToolbarActivity() {
 
-
     companion object {
         private val KEY_FRAG_KEY = "frag_key"
         private val KEY_FRAG_ARGS = "frag_args"

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_selector_surface"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/keyline_horizontal"
+    android:paddingTop="@dimen/keyline_vertical"
+    android:paddingRight="@dimen/keyline_horizontal"
+    android:paddingBottom="@dimen/keyline_vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/comment_user_avatar"
+            android:layout_width="@dimen/avatar_size_16"
+            android:layout_height="@dimen/avatar_size_16"
+            app:shapeAppearance="@style/CommentAvatarStyle"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/comment_user_name"
+            style="@style/CommonDescAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/keyline_8"
+            tools:text="@cmlanche" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/comment_time"
+            style="@style/CommonDescAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1小时前" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/keyline_8"
+        android:textSize="@dimen/text_size_14"
+        tools:text="为什么会开发这个工具？工作和生活需要，经常需要去多个网站搜索信息" />
+</LinearLayout>

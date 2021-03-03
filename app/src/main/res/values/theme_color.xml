@@ -16,7 +16,8 @@
 
 <resources>
     <color name="theme_color_primary">#FFFFFFFF</color>
-    <color name="theme_color_secondary">@color/black</color>
+    <color name="theme_color_secondary">#FF529af8</color>
+    <color name="theme_text_color_secondary">#FFB8B7B7</color>
 
     <color name="color_background">#f1f1f1</color>
     <color name="color_surface">#ffffff</color>
