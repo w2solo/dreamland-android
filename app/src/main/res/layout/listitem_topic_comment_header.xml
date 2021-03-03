@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/md_text_view"
+    style="@style/CommonDescAppearance"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?colorSurface"
-    android:gravity="center_vertical"
-    android:lineSpacingExtra="@dimen/keyline_8"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/keyline_horizontal"
+    android:paddingTop="@dimen/keyline_4"
     android:paddingRight="@dimen/keyline_horizontal"
-    android:textSize="@dimen/text_size_14" />
+    android:paddingBottom="@dimen/keyline_4"
+    android:text="@string/comment_title"
+    android:textSize="@dimen/text_size_14"
+    android:textStyle="bold" />

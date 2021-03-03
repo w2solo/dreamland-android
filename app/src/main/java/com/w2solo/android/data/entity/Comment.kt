@@ -6,11 +6,15 @@ import androidx.room.ColumnInfo
 import com.google.gson.annotations.SerializedName
 
 class Comment() : Parcelable {
+
     @SerializedName("id")
     var id: Long = 0
 
     @SerializedName("body")
     var body: String? = null
+
+    @SerializedName("action")
+    var action: String? = null
 
     @SerializedName("created_at")
     @ColumnInfo(name = "created_at")

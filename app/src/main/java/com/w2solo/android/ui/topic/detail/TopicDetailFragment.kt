@@ -91,24 +91,21 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
         adapter!!.setMarkdown(markwon, topic!!.bodyHtml!!)
         //refresh topic details
         adapter!!.notifyDataSetChanged()
-        presenter.loadReplies(true)
+        presenter.loadReplies(topic!!.id, true)
     }
 
     override fun onGetReplies(newList: List<Comment>?, isRefresh: Boolean) {
-        if (isRefresh) {
-            refreshLayout.isRefreshing = false
-        }
         if (newList == null) {
+            if (isRefresh) {
+                refreshLayout.isRefreshing = false
+            }
             return
         }
         if (isRefresh) {
+            refreshLayout.isRefreshing = false
             dataList.clear()
-            dataList.addAll(newList)
-            adapter!!.notifyDataSetChanged()
-        } else {
-            val old = dataList.size
-            dataList.addAll(newList)
-            adapter!!.notifyItemRangeInserted(old, newList.size)
         }
+        dataList.addAll(newList)
+        adapter!!.notifyDataSetChanged()
     }
 }

@@ -30,6 +30,8 @@
     <string name="title_topic_detail">话题详情</string>
     <!--Comment-->
     <string name="comment_send">回复</string>
+    <string name="comment_title">评论区</string>
+    <string name="action_excellent">标记为精华帖</string>
 
     <!--    Common-->
     <string name="back">返回</string>

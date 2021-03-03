@@ -16,8 +16,8 @@ interface TopicDetailContract {
 
     interface Presenter : IPresenter<View> {
 
-        fun loadTopic(topicId:Long)
+        fun loadTopic(topicId: Long)
 
-        fun loadReplies(isRefresh: Boolean)
+        fun loadReplies(topicId: Long, isRefresh: Boolean)
     }
 }

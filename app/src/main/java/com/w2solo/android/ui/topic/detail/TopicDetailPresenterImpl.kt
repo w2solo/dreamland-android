@@ -8,6 +8,9 @@ import io.reactivex.schedulers.Schedulers
 class TopicDetailPresenterImpl(view: TopicDetailContract.View) :
     BasePresenter<TopicDetailContract.View>(view), TopicDetailContract.Presenter {
 
+    private var pageIndex = 0
+    private val pageSize = 20
+
     override fun loadTopic(topicId: Long) {
         //load from api
         val disposable = Requester.apiService().getTopicDetail(topicId)
@@ -21,6 +24,20 @@ class TopicDetailPresenterImpl(view: TopicDetailContract.View) :
         runDisposable(disposable)
     }
 
-    override fun loadReplies(isRefresh: Boolean) {
+    override fun loadReplies(topicId: Long, isRefresh: Boolean) {
+        //load from api
+        if (isRefresh) {
+            pageIndex = 0
+        }
+        val disposable = Requester.apiService().getTopicReplies(topicId, pageIndex, pageSize)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                pageIndex++
+                view?.onGetReplies(it.list, true)
+            }) {
+                view?.onGetReplies(null, true)
+            }
+        runDisposable(disposable)
     }
 }
