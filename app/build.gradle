@@ -33,13 +33,14 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation "androidx.core:core-ktx:$AndroidX_Core_KTX"
     implementation "androidx.appcompat:appcompat:$ANDROID_X_COMPAT_VERSION"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:${ANDROID_X_BASE_VERSION}"
     implementation "com.google.android.material:material:$MD_VERSION"
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
+    implementation project(path: ':markwon-recycler-adapter-ext')
     kapt "androidx.room:room-compiler:$room_version"
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
@@ -59,7 +60,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:4.11.0"
 
     //Markwon
-    final def markwon_version = '4.6.0'
     implementation "io.noties.markwon:core:$markwon_version"
     implementation "io.noties.markwon:ext-latex:$markwon_version"
     implementation "io.noties.markwon:ext-strikethrough:$markwon_version"
@@ -70,7 +70,7 @@ dependencies {
     implementation "io.noties.markwon:image-glide:$markwon_version"
     implementation "io.noties.markwon:inline-parser:$markwon_version"
     implementation "io.noties.markwon:linkify:$markwon_version"
-    implementation "io.noties.markwon:recycler:$markwon_version"
+//    implementation "io.noties.markwon:recycler:$markwon_version"
 //    implementation"io.noties.markwon:recycler-table:$markwon_version"
 //    implementation "io.noties.markwon:syntax-highlight:$markwon_version"
 }

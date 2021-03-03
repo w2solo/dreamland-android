@@ -24,14 +24,4 @@
         android:layout_marginRight="@dimen/keyline_horizontal"
         android:background="@drawable/common_divider"
         android:padding="@dimen/keyline_horizontal" />
-
-    <TextView
-        android:id="@+id/topic_body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/keyline_vertical"
-        android:layout_marginBottom="@dimen/keyline_horizontal"
-        android:lineSpacingExtra="@dimen/keyline_8"
-        android:textSize="@dimen/text_size_14" />
-
 </LinearLayout>

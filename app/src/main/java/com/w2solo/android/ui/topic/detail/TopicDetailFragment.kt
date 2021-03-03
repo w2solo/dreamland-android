@@ -11,6 +11,8 @@ import com.w2solo.android.data.entity.Comment
 import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.fragment.BaseFragment
 import com.w2solo.android.ui.commonfrag.CommonFragActivity
+import com.w2solo.android.ui.topic.markdown.MDParser
+import com.w2solo.markwon.recycler.ext.MarkwonAdapter
 
 class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
 
@@ -35,7 +37,7 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
 
     private lateinit var rv: RecyclerView
     private lateinit var refreshLayout: SwipeRefreshLayout
-    private var adapter: TopicDetailAdapter? = null
+    private var adapter: MarkwonAdapter? = null
     private lateinit var presenter: TopicDetailPresenterImpl
 
     override fun getLayout() = R.layout.topic_detail_fragment
@@ -66,7 +68,7 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
     override fun onGetTopic(newTopic: Topic?, fromAPI: Boolean) {
         if (newTopic == null) {
             //no local data ,and load from api failed
-            if (fromAPI || topic == null) {
+            if (fromAPI && topic == null) {
                 Toast.makeText(context, R.string.error_data_load_failed, Toast.LENGTH_SHORT).show()
                 activity?.finish()
                 return
@@ -74,15 +76,21 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
         }
         if (adapter == null) {
             topic = newTopic
-            adapter = TopicDetailAdapter(topic!!, dataList)
+            adapter =
+                MarkwonAdapter.builder(R.layout.listitem_topic_md_node, R.id.md_text_view)
+                    //register a delegate to display comment item in markdown adapter
+                    .adapterDelegate(TopicMarkdowAdapterDelegate(dataList))
+                    .build()
             rv.adapter = adapter
         } else {
             //only replace content
             topic!!.bodyHtml = newTopic!!.bodyHtml
             topic!!.body = newTopic.body
         }
+        val markwon = MDParser.parseMarkDown(context!!)
+        adapter!!.setMarkdown(markwon, topic!!.bodyHtml!!)
         //refresh topic details
-        adapter!!.notifyItemChanged(0)
+        adapter!!.notifyDataSetChanged()
         presenter.loadReplies(true)
     }
 
