@@ -4,13 +4,13 @@ import android.app.Application
 import com.w2solo.android.BuildConfig
 import com.w2solo.android.app.account.AccountManager
 import com.w2solo.android.module.keyvalue.KV
-import com.w2solo.android.utils.Logger
+import com.w2solo.android.utils.AppLog
 
 class DreamlandApp : Application() {
     override fun onCreate() {
         super.onCreate()
         AppHolder.init(this)
-        Logger.setEnabled(BuildConfig.DEBUG)
+        AppLog.setEnabled(BuildConfig.DEBUG)
         initSDKs()
     }
 

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.tencent.mmkv.MMKV;
-import com.w2solo.android.utils.Logger;
+import com.w2solo.android.utils.AppLog;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -46,7 +46,7 @@ public class KV {
         kit = accountKit;
         long start = System.currentTimeMillis();
         MMKV.initialize(context);
-        Logger.INSTANCE.d(TAG, "MMKV init time=" + (System.currentTimeMillis() - start));
+        AppLog.INSTANCE.d(TAG, "MMKV init time=" + (System.currentTimeMillis() - start));
     }
 
     public static IKVStorage getStorageInstance(@Type int type) {
@@ -89,7 +89,7 @@ public class KV {
 
     public static int getUserInt(String key, int defValue) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "getUserInt wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "getUserInt wrong, not login key=" + key);
             return defValue;
         }
         return getStorage(TYPE_USER).getInt(key, defValue);
@@ -97,7 +97,7 @@ public class KV {
 
     public static long getUserLong(String key, Long defValue) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "getUserLong wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "getUserLong wrong, not login key=" + key);
             return defValue;
         }
         return getStorage(TYPE_USER).getLong(key, defValue);
@@ -105,7 +105,7 @@ public class KV {
 
     public static float getUserFloat(String key, Float defValue) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "getUserFloat wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "getUserFloat wrong, not login key=" + key);
             return defValue;
         }
         return getStorage(TYPE_USER).getFloat(key, defValue);
@@ -113,7 +113,7 @@ public class KV {
 
     public static double getUserDouble(String key, Double defValue) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "getUserDouble wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "getUserDouble wrong, not login key=" + key);
             return defValue;
         }
         return getStorage(TYPE_USER).getDouble(key, defValue);
@@ -121,7 +121,7 @@ public class KV {
 
     public static boolean getUserBool(String key, boolean defValue) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "getUserBool wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "getUserBool wrong, not login key=" + key);
             return defValue;
         }
         return getStorage(TYPE_USER).getBool(key, defValue);
@@ -129,7 +129,7 @@ public class KV {
 
     public static String getUserStr(String key, @Nullable String defValue) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "getUserStr wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "getUserStr wrong, not login key=" + key);
             return defValue;
         }
         return getStorage(TYPE_USER).getString(key, defValue);
@@ -137,7 +137,7 @@ public class KV {
 
     public static Set<String> getUserStrSet(String key, @Nullable Set<String> defValue) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "getUserStrSet wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "getUserStrSet wrong, not login key=" + key);
             return defValue;
         }
         return getStorage(TYPE_USER).getStringSet(key, defValue);
@@ -152,7 +152,7 @@ public class KV {
      */
     public static boolean saveUserValue(String key, Object value) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "saveUserValue wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "saveUserValue wrong, not login key=" + key);
             return false;
         }
         return getStorage(TYPE_USER).save(key, value);
@@ -166,7 +166,7 @@ public class KV {
      */
     public static boolean saveUserValues(ContentValues values) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "saveUserValues wrong, not login values=" + values);
+            AppLog.INSTANCE.e(TAG, "saveUserValues wrong, not login values=" + values);
             return false;
         }
         return getStorage(TYPE_USER).save(values);
@@ -176,7 +176,7 @@ public class KV {
 
     public static boolean containsUserKey(String key) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "containsUserKey wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "containsUserKey wrong, not login key=" + key);
             return false;
         }
         return getStorage(TYPE_USER).containsKey(key);
@@ -184,7 +184,7 @@ public class KV {
 
     public static void removeUserValue(String key) {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "removeUserValue wrong, not login key=" + key);
+            AppLog.INSTANCE.e(TAG, "removeUserValue wrong, not login key=" + key);
             return;
         }
         getStorage(TYPE_USER).remove(key);
@@ -193,7 +193,7 @@ public class KV {
     @Nullable
     public static String[] allUserKeys() {
         if (!checkUser()) {
-            Logger.INSTANCE.e(TAG, "allUserKeys wrong, not login");
+            AppLog.INSTANCE.e(TAG, "allUserKeys wrong, not login");
             return null;
         }
         return getStorage(TYPE_USER).allKeys();

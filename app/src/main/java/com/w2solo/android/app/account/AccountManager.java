@@ -11,7 +11,7 @@ import com.w2solo.android.R;
 import com.w2solo.android.app.broadcast.AppBroadcast;
 import com.w2solo.android.data.entity.User;
 import com.w2solo.android.ui.base.broadcast.BroadcastHelper;
-import com.w2solo.android.utils.Logger;
+import com.w2solo.android.utils.AppLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class AccountManager {
                 return new Gson().toJson(user);
             }
         };
-        Logger.INSTANCE.d(TAG, "tang-----初始化登录账户耗时  " + (System.currentTimeMillis() - start));
+        AppLog.INSTANCE.d(TAG, "tang-----初始化登录账户耗时  " + (System.currentTimeMillis() - start));
     }
 
     @Nullable
@@ -104,7 +104,7 @@ public class AccountManager {
     public boolean logout() {
         //清空账号信息
         boolean result = keeper.onLogout();
-        Logger.INSTANCE.d(TAG, "退出登录 isLogin " + isLogin() + "  clearResult " + result);
+        AppLog.INSTANCE.d(TAG, "退出登录 isLogin " + isLogin() + "  clearResult " + result);
         BroadcastHelper.INSTANCE.sendBroadcast(AppBroadcast.ACCOUNT_CHANGE);
         triggerCallback(false);
         return true;

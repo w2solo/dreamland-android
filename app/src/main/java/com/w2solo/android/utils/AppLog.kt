@@ -2,7 +2,7 @@ package com.w2solo.android.utils
 
 import android.util.Log
 
-object Logger {
+object AppLog {
     private var enabled = false
 
     private val LOG_PREFIX = "Dreamland---"

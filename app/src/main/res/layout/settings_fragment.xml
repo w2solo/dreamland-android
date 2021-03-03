@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        style="@style/AppBarLayoutStyle">
+    <com.google.android.material.appbar.AppBarLayout style="@style/AppBarLayoutStyle">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/settings_toolbar"
@@ -79,6 +78,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="1px"
         android:text="@string/group_products" />
+
+    <TextView
+        android:id="@+id/settings_tuxiaochao"
+        style="@style/OptionItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1px"
+        android:text="@string/app_feedback"
+        android:visibility="gone" />
 
     <TextView
         style="@style/CommonDescAppearance"

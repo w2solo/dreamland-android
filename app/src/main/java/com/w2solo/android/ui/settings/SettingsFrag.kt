@@ -36,6 +36,10 @@ class SettingsFrag : BaseFragment() {
             CommonFragActivity.start(it.context, R.string.title_login)
         }
 
+//        fview<View>(R.id.settings_tuxiaochao)?.setOnClickListener {
+//            val url = "https://support.qq.com/product/1221"
+//            WebViewActivity.start(it.context, url, getString(R.string.app_feedback))
+//        }
         registerBroadcastReceiver(object : BaseBroadcastReceiver() {
             override fun handleAction(intent: Intent) {
                 if (AppBroadcast.ACCOUNT_CHANGE == intent.action) {

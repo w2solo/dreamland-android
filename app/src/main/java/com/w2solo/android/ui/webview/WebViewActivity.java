@@ -9,12 +9,11 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 
 import com.w2solo.android.R;
 import com.w2solo.android.ui.base.activity.BaseToolbarActivity;
-import com.w2solo.android.utils.Logger;
+import com.w2solo.android.utils.AppLog;
 
 /**
  * 显示网页信息
@@ -27,9 +26,9 @@ public class WebViewActivity extends BaseToolbarActivity {
     private WebViewFragment webViewFragment;
     private String pageUrl, initTitle;
 
-    public static void start(Context activity, String url, @Nullable String title, @ColorInt int themeColor) {
+    public static void start(Context activity, String url, @Nullable String title) {
         if (TextUtils.isEmpty(url)) {
-            Logger.INSTANCE.e("Web", "url不能为空");
+            AppLog.INSTANCE.e("Web", "url不能为空");
             return;
         }
         Intent intent = new Intent(activity, WebViewActivity.class);

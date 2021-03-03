@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
-import com.w2solo.android.utils.Logger
+import com.w2solo.android.utils.AppLog
 
 abstract class BaseBroadcastReceiver : BroadcastReceiver() {
 
@@ -17,7 +17,7 @@ abstract class BaseBroadcastReceiver : BroadcastReceiver() {
         if (intent == null || TextUtils.isEmpty(intent.action)) {
             return
         }
-        Logger.d(TAG, "收到广播 " + intent.action + "  " + intent.extras)
+        AppLog.d(TAG, "收到广播 " + intent.action + "  " + intent.extras)
         handleAction(intent)
     }
 

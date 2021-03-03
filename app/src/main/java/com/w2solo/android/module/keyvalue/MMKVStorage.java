@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import androidx.annotation.Nullable;
 
 import com.tencent.mmkv.MMKV;
-import com.w2solo.android.utils.Logger;
+import com.w2solo.android.utils.AppLog;
 
 import java.util.Map;
 import java.util.Set;
@@ -33,7 +33,7 @@ class MMKVStorage implements IKVStorage {
         }
         long start = System.currentTimeMillis();
         int result = instance.decodeInt(key, defValue);
-        if (Logger.INSTANCE.isEnabled()) {
+        if (AppLog.INSTANCE.isEnabled()) {
             debugReadTime("getInt", key, result, start);
         }
         return result;
@@ -46,7 +46,7 @@ class MMKVStorage implements IKVStorage {
         }
         long start = System.currentTimeMillis();
         long result = instance.decodeLong(key, defValue);
-        if (Logger.INSTANCE.isEnabled()) {
+        if (AppLog.INSTANCE.isEnabled()) {
             debugReadTime("getLong", key, result, start);
         }
         return result;
@@ -59,7 +59,7 @@ class MMKVStorage implements IKVStorage {
         }
         long start = System.currentTimeMillis();
         float result = instance.decodeFloat(key, defValue);
-        if (Logger.INSTANCE.isEnabled()) {
+        if (AppLog.INSTANCE.isEnabled()) {
             debugReadTime("getFloat", key, result, start);
         }
         return result;
@@ -72,7 +72,7 @@ class MMKVStorage implements IKVStorage {
         }
         long start = System.currentTimeMillis();
         double result = instance.decodeDouble(key, defValue);
-        if (Logger.INSTANCE.isEnabled()) {
+        if (AppLog.INSTANCE.isEnabled()) {
             debugReadTime("getDouble", key, result, start);
         }
         return result;
@@ -85,7 +85,7 @@ class MMKVStorage implements IKVStorage {
         }
         long start = System.currentTimeMillis();
         boolean result = instance.decodeBool(key, defValue);
-        if (Logger.INSTANCE.isEnabled()) {
+        if (AppLog.INSTANCE.isEnabled()) {
             debugReadTime("getBool", key, result, start);
         }
         return result;
@@ -98,15 +98,15 @@ class MMKVStorage implements IKVStorage {
         }
         long start = System.currentTimeMillis();
         String result = instance.decodeString(key, defValue);
-        if (Logger.INSTANCE.isEnabled()) {
+        if (AppLog.INSTANCE.isEnabled()) {
             debugReadTime("getString", key, result, start);
         }
         return result;
     }
 
     private void debugReadTime(String msg, String key, Object value, long time) {
-        if (Logger.INSTANCE.isEnabled()) {
-            Logger.INSTANCE.d(TAG, msg + " key=" + key + " ,value=" + value + ", time=" + (System.currentTimeMillis() - time));
+        if (AppLog.INSTANCE.isEnabled()) {
+            AppLog.INSTANCE.d(TAG, msg + " key=" + key + " ,value=" + value + ", time=" + (System.currentTimeMillis() - time));
         }
     }
 
@@ -117,7 +117,7 @@ class MMKVStorage implements IKVStorage {
         }
         long start = System.currentTimeMillis();
         Set<String> result = instance.decodeStringSet(key, defValue);
-        if (Logger.INSTANCE.isEnabled()) {
+        if (AppLog.INSTANCE.isEnabled()) {
             debugReadTime("getStringSet", key, result, start);
         }
         return result;
@@ -152,11 +152,11 @@ class MMKVStorage implements IKVStorage {
         } else if (value instanceof Set) {
             result = instance.encode(key, (Set) value);
         }
-        if (Logger.INSTANCE.isEnabled() && result) {
-            Logger.INSTANCE.d(TAG, "MMKVStorage.save key=" + key + ",value=" + value + " time=" + (System.currentTimeMillis() - start));
+        if (AppLog.INSTANCE.isEnabled() && result) {
+            AppLog.INSTANCE.d(TAG, "MMKVStorage.save key=" + key + ",value=" + value + " time=" + (System.currentTimeMillis() - start));
         }
         if (!result) {
-            Logger.INSTANCE.e(TAG, "MMKVStorage.save(String key,Object value) error: wrong value type,key=" + key + " value=" + value + " time=" + (System.currentTimeMillis() - start));
+            AppLog.INSTANCE.e(TAG, "MMKVStorage.save(String key,Object value) error: wrong value type,key=" + key + " value=" + value + " time=" + (System.currentTimeMillis() - start));
         }
         return result;
     }
@@ -171,7 +171,7 @@ class MMKVStorage implements IKVStorage {
         for (Map.Entry<String, Object> entry : values.valueSet()) {
             key = entry.getKey();
             if (TextUtils.isEmpty(key)) {
-                Logger.INSTANCE.e(TAG, "MMKVStorage.save(ContentValues) error:empty key!!!");
+                AppLog.INSTANCE.e(TAG, "MMKVStorage.save(ContentValues) error:empty key!!!");
                 continue;
             }
             if (save(key, entry.getValue())) {

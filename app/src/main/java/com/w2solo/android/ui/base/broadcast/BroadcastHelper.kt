@@ -5,7 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.w2solo.android.app.AppHolder
-import com.w2solo.android.utils.Logger
+import com.w2solo.android.utils.AppLog
 
 object BroadcastHelper {
 
@@ -27,7 +27,7 @@ object BroadcastHelper {
      */
     fun sendBroadcast(action: Intent) {
         val context: Context = AppHolder.getApplication()!!
-        Logger.d(TAG, "发送广播 " + action.action + "    " + action.extras)
+        AppLog.d(TAG, "发送广播 " + action.action + "    " + action.extras)
         LocalBroadcastManager.getInstance(context).sendBroadcast(Intent(action))
     }
 
@@ -39,15 +39,15 @@ object BroadcastHelper {
      */
     fun registerBroadcast(receiver: BaseBroadcastReceiver?, actions: Array<out String>?) {
         if (receiver == null || actions == null) {
-            Logger.e(TAG, "receiver is null")
+            AppLog.e(TAG, "receiver is null")
             return
         }
         val context: Context = AppHolder.getApplication()!!
         val bm = LocalBroadcastManager.getInstance(context)
         for (i in actions.indices) {
             bm.registerReceiver(receiver, IntentFilter(actions[i]))
-            if (Logger.isEnabled()) {
-                Logger.w(TAG, "register broadcast " + actions[i])
+            if (AppLog.isEnabled()) {
+                AppLog.w(TAG, "register broadcast " + actions[i])
             }
         }
     }

@@ -12,8 +12,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.w2solo.android.R
 import com.w2solo.android.ui.base.fragment.BaseFragment
+import com.w2solo.android.utils.AppLog
 import com.w2solo.android.utils.FunctionUtils
-import com.w2solo.android.utils.Logger
 
 /**
  * Created by tangyuchun on 1/8/16.
@@ -47,11 +47,11 @@ class WebViewFragment : BaseFragment() {
             //设置UA
             val userAgent = settings.userAgentString + getWebUserAgent()
             settings.userAgentString = userAgent
-            if (Logger.isEnabled()) {
-                Logger.d(TAG, "UserAgent=$userAgent")
+            if (AppLog.isEnabled()) {
+                AppLog.d(TAG, "UserAgent=$userAgent")
             }
         }
-        WebView.setWebContentsDebuggingEnabled(Logger.isEnabled())
+        WebView.setWebContentsDebuggingEnabled(AppLog.isEnabled())
         webView!!.setWebChromeClient(object : WebChromeClient() {
             override fun onProgressChanged(
                 view: WebView,
@@ -73,44 +73,31 @@ class WebViewFragment : BaseFragment() {
                 title: String
             ) {
                 super.onReceivedTitle(view, title)
-                Logger.d(TAG, "tang----onReceivedTitle $title")
+                AppLog.d(TAG, "tang----onReceivedTitle $title")
                 if (onWebListener != null) {
                     onWebListener!!.onReceivedTitle(view, title)
                 }
             }
         })
         webView!!.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(
-                view: WebView,
-                urlStr: String
-            ): Boolean {
-                Logger.d(TAG, "tang---shouldOverrideUrlLoading $urlStr")
+            override fun shouldOverrideUrlLoading(view: WebView, urlStr: String): Boolean {
+                AppLog.d(TAG, "tang---shouldOverrideUrlLoading $urlStr")
                 //如果可以处理，则返回false
                 return loadUrl(urlStr)
             }
 
-            override fun onPageStarted(
-                view: WebView,
-                url: String,
-                favicon: Bitmap
-            ) {
+            override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
                 super.onPageStarted(view, url, favicon)
-                Logger.d(TAG, "tang-----onPageStarted $url")
-                if (view.visibility != View.VISIBLE) {
-                    view.visibility = View.VISIBLE
-                }
+                AppLog.d(TAG, "tang-----onPageStarted $url")
             }
 
-            override fun onPageFinished(
-                view: WebView,
-                url: String
-            ) {
-                Logger.d(
+            override fun onPageFinished(view: WebView, url: String) {
+                AppLog.d(
                     "WebViewFragment",
                     "tang----onPageFinished 111  " + url + "  " + webView!!.url
                 )
                 super.onPageFinished(view, url)
-                Logger.d(
+                AppLog.d(
                     "WebViewFragment",
                     "tang----onPageFinished 222  " + url + "  " + webView!!.url
                 )
@@ -124,7 +111,7 @@ class WebViewFragment : BaseFragment() {
             ) {
                 super.onReceivedError(view, request, error)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Logger.d(
+                    AppLog.d(
                         "WebViewFragment",
                         "tang----onReceivedError " + error.errorCode + "  " + error.description
                     )
@@ -143,7 +130,7 @@ class WebViewFragment : BaseFragment() {
             }
         }
         webView!!.setDownloadListener { url: String, _: String?, _: String?, _: String?, _: Long ->
-            Logger.d(TAG, "onDownloadStart 下载文件 $url")
+            AppLog.d(TAG, "onDownloadStart 下载文件 $url")
             if (canDownload()) {
                 try {
                     val uri = Uri.parse(url)
@@ -182,7 +169,7 @@ class WebViewFragment : BaseFragment() {
      */
     fun loadUrl(urlStr: String): Boolean {
         var urlStr = urlStr
-        Logger.d(TAG, "tang----loadUrl $urlStr")
+        AppLog.d(TAG, "tang----loadUrl $urlStr")
         if (webView == null || TextUtils.isEmpty(urlStr)) {
             return false
         }
@@ -194,10 +181,10 @@ class WebViewFragment : BaseFragment() {
             return true
         }
         if (!validateUrl(urlStr)) {
-            Logger.e(TAG, "tang----loadUrl（） 非法Url 不加载")
+            AppLog.e(TAG, "tang----loadUrl（） 非法Url 不加载")
             return false
         }
-        Logger.d(TAG, "tang------不拦截处理 $urlStr")
+        AppLog.d(TAG, "tang------不拦截处理 $urlStr")
         webView!!.loadUrl(urlStr)
         return true
     }

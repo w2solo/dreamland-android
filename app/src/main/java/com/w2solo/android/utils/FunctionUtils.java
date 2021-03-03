@@ -72,7 +72,7 @@ public class FunctionUtils {
         if (window != null) {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         } else {
-            Logger.INSTANCE.w("FunctionUtils", "隐藏输入法失败，method=hideSoftKeyboardOfWindow msg=window is NULL");
+            AppLog.INSTANCE.w("FunctionUtils", "隐藏输入法失败，method=hideSoftKeyboardOfWindow msg=window is NULL");
         }
     }
 
