@@ -1,2 +1,3 @@
+include ':markwon-recycler-adapter-ext'
 include ':app'
 rootProject.name = "DreamlandAndroid"
