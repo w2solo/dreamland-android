@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.w2solo.android.R
@@ -12,6 +13,7 @@ import com.w2solo.android.app.broadcast.AppBroadcast
 import com.w2solo.android.ui.base.broadcast.BaseBroadcastReceiver
 import com.w2solo.android.ui.base.fragment.BaseFragment
 import com.w2solo.android.ui.commonfrag.CommonFragActivity
+import com.w2solo.android.ui.topic.detail.TopicDetailFragment
 
 class SettingsFrag : BaseFragment() {
 
@@ -19,12 +21,18 @@ class SettingsFrag : BaseFragment() {
 
     override fun initViews() {
         fview<View>(R.id.settings_rules)?.setOnClickListener {
-//            WebViewActivity.start(it.context,"https://www.w2solo.com/topics/1")
+            TopicDetailFragment.showTopic(it.context, 1L)
         }
         fview<View>(R.id.settings_group)?.setOnClickListener {
-//            WebViewActivity.start(it.context,"https://www.w2solo.com/topics/1")
+            TopicDetailFragment.showTopic(it.context, 40L)
+        }
+        fview<View>(R.id.settings_products)?.setOnClickListener {
+            TopicDetailFragment.showTopic(it.context, 2L)
         }
         fview<View>(R.id.settings_account_layout)?.setOnClickListener {
+            if (AccountManager.getInstance().isLogin) {
+                return@setOnClickListener
+            }
             CommonFragActivity.start(it.context, R.string.title_login)
         }
 
@@ -42,7 +50,16 @@ class SettingsFrag : BaseFragment() {
     private fun refreshAccount() {
         val avatar = fview<ImageView>(R.id.settings_account_avatar)
         val name = fview<TextView>(R.id.settings_account_name)
+
+        val toolbar = fview<Toolbar>(R.id.settings_toolbar)
         if (AccountManager.getInstance().isLogin) {
+            toolbar?.inflateMenu(R.menu.menu_settings)
+            toolbar?.setOnMenuItemClickListener {
+                if (it.itemId == R.id.action_logout) {
+                    AccountManager.getInstance().logout()
+                }
+                true
+            }
             val user = AccountManager.getInstance().loginUser
             name?.text = user?.name
             avatar?.setImageBitmap(null)
@@ -52,6 +69,7 @@ class SettingsFrag : BaseFragment() {
                 .placeholder(R.drawable.ic_avatar_default)
                 .into(avatar!!)
         } else {
+            toolbar?.menu?.clear()
             name?.setText(R.string.click_to_login)
             avatar?.setImageResource(R.drawable.ic_avatar_default)
         }

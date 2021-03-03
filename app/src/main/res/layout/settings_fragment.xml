@@ -6,11 +6,10 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/activity_appbar_layout_id"
         style="@style/AppBarLayoutStyle">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@id/activity_toolbar_id"
+            android:id="@+id/settings_toolbar"
             style="@style/ToolBarStyle"
             app:navigationIcon="@null"
             app:title="@string/tab_me" />
@@ -28,8 +27,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/settings_account_avatar"
-            android:layout_width="@dimen/view_size_48"
-            android:layout_height="@dimen/view_size_48"
+            android:layout_width="@dimen/avatar_size_48"
+            android:layout_height="@dimen/avatar_size_48"
             android:contentDescription="@string/account_avatar_contd"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
@@ -72,6 +71,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="1px"
         android:text="@string/group_guide" />
+
+    <TextView
+        android:id="@+id/settings_products"
+        style="@style/OptionItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1px"
+        android:text="@string/group_products" />
 
     <TextView
         style="@style/CommonDescAppearance"

@@ -23,7 +23,6 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
                 android:inputType="text"
-                android:text="litang0907"
                 android:textColor="?colorSecondary" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,8 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
-                android:inputType="text"
-                android:text="12345678"
+                android:inputType="textPassword"
                 android:textColor="?colorSecondary" />
         </com.google.android.material.textfield.TextInputLayout>
 

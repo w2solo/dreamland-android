@@ -98,7 +98,7 @@ public class AccountManager {
     }
 
     public boolean isLogin() {
-        return keeper.getCurrentUser() != null;
+        return keeper.getCurrentUser() != null && keeper.getUserToken() != null;
     }
 
     public boolean logout() {
