@@ -17,7 +17,8 @@ class TopicDetailVH(itemView: View) : EasyHolder(itemView) {
             body.visibility = View.GONE
         } else {
             body.visibility = View.VISIBLE
-            body.text = MDParser.parseMarkDown(itemView.context, topic.bodyHtml!!)
+            val markwon = MDParser.parseMarkDown(itemView.context)
+            markwon.setMarkdown(body, topic.bodyHtml!!)
         }
     }
 }
