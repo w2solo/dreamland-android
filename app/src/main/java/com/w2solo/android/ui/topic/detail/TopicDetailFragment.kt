@@ -11,13 +11,14 @@ import com.w2solo.android.R
 import com.w2solo.android.app.account.AccountManager
 import com.w2solo.android.data.entity.Comment
 import com.w2solo.android.data.entity.Topic
+import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.fragment.BaseFragment
 import com.w2solo.android.ui.commentbar.CommentBar
 import com.w2solo.android.ui.commonfrag.CommonFragActivity
 import com.w2solo.android.ui.topic.markdown.MDParser
 import com.w2solo.markwon.recycler.ext.MarkwonAdapter
 
-class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
+class TopicDetailFragment : BaseFragment(), TopicDetailContract.View, IScrollToTop {
 
     companion object {
 
@@ -191,5 +192,9 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
                 break
             }
         }
+    }
+
+    override fun scrollToTop() {
+        rv.smoothScrollToPosition(0)
     }
 }

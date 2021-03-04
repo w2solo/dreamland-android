@@ -3,9 +3,13 @@ package com.w2solo.android.ui.discover
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.w2solo.android.R
+import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.fragment.BaseFragment
+import kotlinx.android.synthetic.main.discover_home_fragment.*
 
-class DiscoverFrag : BaseFragment() {
+class DiscoverFrag : BaseFragment(), IScrollToTop {
+
+    private var adapter: DiscoverPagerAdapter? = null
 
     override fun getLayout() = R.layout.discover_home_fragment
 
@@ -18,11 +22,11 @@ class DiscoverFrag : BaseFragment() {
             }
         })
         tabLayout!!.addTab(
-            tabLayout.newTab().setText(R.string.discover_tab_new_hackers)
+            tabLayout.newTab().setText(R.string.discover_tab_products)
 //                .setCustomView(R.layout.common_tab)
         )
         tabLayout.addTab(
-            tabLayout.newTab().setText(R.string.discover_tab_products)
+            tabLayout.newTab().setText(R.string.discover_tab_new_hackers)
 //                .setCustomView(R.layout.common_tab)
         )
         tabLayout.addTab(
@@ -40,6 +44,14 @@ class DiscoverFrag : BaseFragment() {
                 viewPager.currentItem = tab!!.position
             }
         })
-        viewPager.adapter = DiscoverPagerAdapter(this)
+        adapter = DiscoverPagerAdapter(this)
+        viewPager.adapter = adapter!!
+    }
+
+    override fun scrollToTop() {
+        val frag = adapter?.getFragment(viewpager.currentItem)
+        if (frag is IScrollToTop) {
+            frag.scrollToTop()
+        }
     }
 }

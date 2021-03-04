@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_selector_surface"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/keyline_horizontal"
+    android:paddingTop="@dimen/keyline_vertical"
+    android:paddingRight="@dimen/keyline_horizontal"
+    android:paddingBottom="@dimen/keyline_vertical">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:shapeAppearance="@style/TopicAvatarStyle" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/keyline_horizontal"
+        android:maxLines="1"
+        android:singleLine="true"
+        tools:text="Android 下拉刷新 Swip" />
+
+    <!--    <com.google.android.material.button.MaterialButton-->
+    <!--        style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:minWidth="48dp"-->
+    <!--        android:minHeight="32dp"-->
+    <!--        android:text="@string/not_followed"-->
+    <!--        android:textColor="@color/text_color_desc_accent" />-->
+</LinearLayout>

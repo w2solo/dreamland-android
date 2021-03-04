@@ -74,4 +74,9 @@ interface ApiService {
     //删除评论
     @DELETE("api/v3/replies/{reply_id}")
     fun deleteTopicReply(@Path("reply_id") reply_id: Long): Observable<ReplyBean>
+
+    //热门用户
+    @GET("api/v3/users")
+    fun getTopUsers(): Observable<UserListBean>
+
 }

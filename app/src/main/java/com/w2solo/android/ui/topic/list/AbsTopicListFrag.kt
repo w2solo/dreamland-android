@@ -1,8 +1,6 @@
 package com.w2solo.android.ui.topic.list
 
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -10,6 +8,7 @@ import com.w2solo.android.R
 import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.fragment.BaseFragment
+import com.w2solo.android.utils.ViewHelper
 
 abstract class AbsTopicListFrag : BaseFragment(), TopicListContract.View, IScrollToTop {
 
@@ -22,7 +21,7 @@ abstract class AbsTopicListFrag : BaseFragment(), TopicListContract.View, IScrol
 
     private val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
-     abstract fun getCurrentNodeId(): Long
+    abstract fun getCurrentNodeId(): Long
 
     override fun initViews() {
         fview<Toolbar>(R.id.home_topic_list)?.setOnClickListener {
@@ -31,10 +30,7 @@ abstract class AbsTopicListFrag : BaseFragment(), TopicListContract.View, IScrol
         rv = fview(R.id.recyclerView)!!
         rv.layoutManager = layoutManager
         rv.adapter = adapter
-
-        val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-        divider.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.common_divider)!!)
-        rv.addItemDecoration(divider)
+        rv.addItemDecoration(ViewHelper.buildRecyclerViewDivider(context!!))
 
         refreshLayout = fview(R.id.swipe_refresh_layout)!!
         refreshLayout.setOnRefreshListener {

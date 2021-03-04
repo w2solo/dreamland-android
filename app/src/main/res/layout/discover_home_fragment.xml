@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <com.google.android.material.appbar.AppBarLayout style="@style/AppBarLayoutStyle">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/settings_toolbar"
+            android:id="@+id/discover_toolbar"
             style="@style/ToolBarStyle"
             android:elevation="0dp"
             app:navigationIcon="@null"
