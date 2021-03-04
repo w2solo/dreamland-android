@@ -12,6 +12,8 @@ interface TopicDetailContract {
         fun onGetTopic(topic: Topic?, fromAPI: Boolean)
 
         fun onGetReplies(dataList: List<Comment>?, isRefresh: Boolean)
+
+        fun onDeleteReply(replyId: Long)
     }
 
     interface Presenter : IPresenter<View> {
@@ -19,5 +21,7 @@ interface TopicDetailContract {
         fun loadTopic(topicId: Long)
 
         fun loadReplies(topicId: Long, isRefresh: Boolean)
+
+        fun deleteReply(replyId: Long)
     }
 }

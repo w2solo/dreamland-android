@@ -7,10 +7,15 @@ import com.w2solo.android.mvp.IView
 interface CommentBarContract {
 
     interface View : IView {
+
         fun onCommentFinished(comment: Comment?)
+
+        fun onEditCommentFinished(comment: Comment?)
     }
 
     interface Presenter : IPresenter<View> {
-        fun sendReplay(topicId: Long, content: String)
+        fun sendReply(topicId: Long, content: String)
+
+        fun editReply(replyId: Long, content: String)
     }
 }

@@ -4,7 +4,8 @@
     <item name="activity_toolbar_id" type="id" />
     <!--通用的AppBarLayout的ID-->
     <item name="activity_appbar_layout_id" type="id" />
-
     <!--通用的SwipeRefreshLayout的ID-->
     <item name="swipe_refresh_layout" type="id" />
+
+    <item name="tag_view_data" type="id" />
 </resources>

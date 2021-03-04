@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 class CommentPresenterImpl(view: CommentBarContract.View) :
     BasePresenter<CommentBarContract.View>(view), CommentBarContract.Presenter {
 
-    override fun sendReplay(topicId: Long, content: String) {
+    override fun sendReply(topicId: Long, content: String) {
         val disposable = Requester.apiService().sendTopicReply(topicId, content)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -18,6 +18,17 @@ class CommentPresenterImpl(view: CommentBarContract.View) :
                 view?.onCommentFinished(null)
             }
         runDisposable(disposable)
+    }
 
+    override fun editReply(replyId: Long, content: String) {
+        val disposable = Requester.apiService().editTopicReply(replyId, content)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view?.onEditCommentFinished(it.comment)
+            }) {
+                view?.onEditCommentFinished(null)
+            }
+        runDisposable(disposable)
     }
 }

@@ -40,4 +40,17 @@ class TopicDetailPresenterImpl(view: TopicDetailContract.View) :
             }
         runDisposable(disposable)
     }
+
+    override fun deleteReply(replyId: Long) {
+        val disposable = Requester.apiService().deleteTopicReply(replyId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                pageIndex++
+                view?.onDeleteReply(replyId)
+            }) {
+                view?.onDeleteReply(-1L)
+            }
+        runDisposable(disposable)
+    }
 }

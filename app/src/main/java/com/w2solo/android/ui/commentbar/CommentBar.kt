@@ -5,10 +5,8 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.w2solo.android.R
 import com.w2solo.android.app.account.AccountManager
 import com.w2solo.android.data.entity.Comment
@@ -21,7 +19,8 @@ class CommentBar(context: Context?, attrs: AttributeSet?) : LinearLayout(context
     private lateinit var sendButton: Button
     private var presenter: CommentPresenterImpl? = null
     private var callback: Callback? = null
-    private var dataId: Long = -1
+    private var dataId: Long = -1L
+    private var editReplyId: Long = -1L
 
     override fun onFinishInflate() {
         super.onFinishInflate()
@@ -32,7 +31,11 @@ class CommentBar(context: Context?, attrs: AttributeSet?) : LinearLayout(context
                 return@setOnClickListener
             }
             val content = editText.text.toString().trim()
-            presenter?.sendReplay(dataId, content)
+            if (editReplyId > 0L) {
+                presenter?.editReply(editReplyId, content)
+            } else {
+                presenter?.sendReply(dataId, content)
+            }
         }
         editText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -73,22 +76,54 @@ class CommentBar(context: Context?, attrs: AttributeSet?) : LinearLayout(context
         this.dataId = dataId
     }
 
+    fun setEditComment(comment: Comment?) {
+        if (comment != null) {
+            editReplyId = comment.id
+            val titleView = findViewById<TextView>(R.id.comment_bar_title)
+            titleView.visibility = View.VISIBLE
+            titleView.setText(R.string.comment_option_edit)
+            editText.setText(comment.body)
+            editText.setSelection(comment.body?.length ?: 0)
+            editText.requestFocus()
+            FunctionUtils.showSoftKeyboard(context, editText)
+        } else {
+            clearStates()
+        }
+    }
+
+    private fun clearStates() {
+        findViewById<View>(R.id.comment_bar_title).visibility = View.GONE
+        editReplyId = -1L
+        editText.text = null
+    }
+
     fun setCallback(callback: Callback?) {
         this.callback = callback
     }
 
     override fun onCommentFinished(comment: Comment?) {
         if (comment != null) {
-            editText.text = null
-            callback?.onSuccess(comment)
+            callback?.onSuccess(comment, false)
             //hide keyboard if comment success
             FunctionUtils.hideSoftKeyboard(context)
+            clearStates()
         } else {
             Toast.makeText(context, R.string.error_request_failed, Toast.LENGTH_SHORT).show()
         }
     }
 
+    override fun onEditCommentFinished(comment: Comment?) {
+        if (comment == null) {
+            Toast.makeText(context, R.string.error_request_failed, Toast.LENGTH_SHORT).show()
+        } else {
+            callback?.onSuccess(comment, true)
+            //hide keyboard if comment success
+            FunctionUtils.hideSoftKeyboard(context)
+            clearStates()
+        }
+    }
+
     interface Callback {
-        fun onSuccess(newComment: Comment)
+        fun onSuccess(newComment: Comment, isEdit: Boolean)
     }
 }

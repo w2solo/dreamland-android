@@ -35,8 +35,12 @@
     <string name="action_excellent">标记为精华帖</string>
     <string name="comment_has_deleted">评论已经被删除</string>
     <string name="hint_input_comment">留言回复...</string>
+    <string name="comment_option_edit">修改评论</string>
+    <string name="comment_option_delete">删除评论</string>
+    <string name="comment_option_delete_msg">确定删除你这条评论？</string>
 
     <!--    Common-->
+    <string name="confirm">确定</string>
     <string name="back">返回</string>
     <string name="close">关闭</string>
     <string name="error_invalid_params">参数错误</string>

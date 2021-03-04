@@ -2,6 +2,7 @@ package com.w2solo.android.data.entity
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.text.TextUtils
 import androidx.room.ColumnInfo
 import com.google.gson.annotations.SerializedName
 
@@ -54,4 +55,13 @@ class Comment() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
+    fun canAction(): Boolean {
+        return TextUtils.isEmpty(action) && !isDeleted
+    }
+
+    fun canShow(): Boolean =
+        !isDeleted && (TextUtils.isEmpty(action) ||
+                (!TextUtils.equals(action, Action.Ban)
+                        && !TextUtils.equals(action, Action.Excellent)))
 }

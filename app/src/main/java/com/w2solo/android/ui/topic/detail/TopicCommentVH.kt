@@ -1,14 +1,12 @@
 package com.w2solo.android.ui.topic.detail
 
 import android.graphics.Typeface
-import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.imageview.ShapeableImageView
 import com.w2solo.android.R
-import com.w2solo.android.data.entity.Action
 import com.w2solo.android.data.entity.Comment
 import com.w2solo.android.ui.base.adapter.EasyHolder
 
@@ -40,14 +38,12 @@ class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
             content.isEnabled = false
         } else {
             content.isEnabled = true
-            if (!TextUtils.isEmpty(comment.action)) {
-                if (Action.Excellent == comment.action) {
-                    content.setText(R.string.action_excellent)
-                    content.setTypeface(null, Typeface.BOLD)
-                }
-            } else {
+            if (comment.canShow()) {
                 content.setTypeface(null, Typeface.NORMAL)
                 content.text = comment.body
+            } else {
+                content.setText(R.string.action_excellent)
+                content.setTypeface(null, Typeface.BOLD)
             }
         }
         itemView.setOnClickListener {

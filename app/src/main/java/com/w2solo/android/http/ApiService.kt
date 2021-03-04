@@ -48,10 +48,22 @@ interface ApiService {
     ): Observable<ReplyListBean>
 
     @FormUrlEncoded
-    //话题详情
+    //发布帖子
     @POST("api/v3/topics/{topic_id}/replies")
     fun sendTopicReply(
         @Path("topic_id") topic_id: Long,
-        @Field("body") body:String,
+        @Field("body") body: String,
     ): Observable<ReplyBean>
+
+    @FormUrlEncoded
+    //修改帖子
+    @POST("api/v3/replies/{reply_id}")
+    fun editTopicReply(
+        @Path("reply_id") reply_id: Long,
+        @Field("body") body: String,
+    ): Observable<ReplyBean>
+
+    //删除评论
+    @DELETE("api/v3/replies/{reply_id}")
+    fun deleteTopicReply(@Path("reply_id") reply_id: Long): Observable<ReplyBean>
 }

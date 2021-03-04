@@ -9,7 +9,10 @@ import com.w2solo.android.ui.base.adapter.EmptyVH
 import com.w2solo.android.utils.AppLog
 import com.w2solo.markwon.recycler.ext.RecyclerAdapterDelegate
 
-class TopicMarkdownAdapterDelegate(private val dataList: List<Comment>) : RecyclerAdapterDelegate {
+class TopicMarkdownAdapterDelegate(
+    private val dataList: List<Comment>,
+    private val onItemClickListener: OnItemClickListener? = null
+) : RecyclerAdapterDelegate {
     companion object {
         const val TAG = "TopicMarkdownAdapterDelegate"
     }
@@ -36,7 +39,15 @@ class TopicMarkdownAdapterDelegate(private val dataList: List<Comment>) : Recycl
         if (holder is EmptyVH) {
             return true
         } else if (holder is TopicCommentVH) {
-            holder.bind(dataList[position - mdNodeCount - 1])
+            val dataIndex = position - mdNodeCount - 1
+            holder.bind(dataList[dataIndex])
+            holder.itemView.setTag(R.id.tag_view_data, dataIndex)
+            holder.itemView.setOnClickListener {
+                val tag = it.getTag(R.id.tag_view_data)
+                if (tag != null && tag is Int) {
+                    onItemClickListener?.onItemClick(dataList[tag])
+                }
+            }
             return true
         }
         AppLog.d(TAG, "onBindViewHolder---position=$position")
@@ -62,4 +73,8 @@ class TopicMarkdownAdapterDelegate(private val dataList: List<Comment>) : Recycl
     }
 
     override fun getItemCount() = dataList.size + 1 + 1 //+1 topic header,+1 last empty space
+
+    interface OnItemClickListener {
+        fun onItemClick(comment: Comment)
+    }
 }

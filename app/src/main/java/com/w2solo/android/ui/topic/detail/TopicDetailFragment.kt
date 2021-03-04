@@ -6,7 +6,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.w2solo.android.R
+import com.w2solo.android.app.account.AccountManager
 import com.w2solo.android.data.entity.Comment
 import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.fragment.BaseFragment
@@ -64,11 +66,22 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
         }
         commentBar = fview(R.id.comment_bar)!!
         commentBar.setCallback(object : CommentBar.Callback {
-            override fun onSuccess(newComment: Comment) {
-                val oldSize = adapter?.itemCount ?: 0
-                dataList.add(newComment)
-                val newSize = adapter?.itemCount ?: 0
-                adapter?.notifyItemRangeChanged(oldSize, newSize - oldSize)
+            override fun onSuccess(newComment: Comment, isEdit: Boolean) {
+                if (isEdit) {
+                    for (item in dataList) {
+                        if (item.id == newComment.id) {
+                            item.body = newComment.body
+                            item.createdTime = newComment.createdTime
+                            adapter?.notifyDataSetChanged()
+                            break
+                        }
+                    }
+                } else {
+                    val oldSize = adapter?.itemCount ?: 0
+                    dataList.add(newComment)
+                    val newSize = adapter?.itemCount ?: 0
+                    adapter?.notifyItemRangeChanged(oldSize, newSize - oldSize)
+                }
             }
         })
 
@@ -91,7 +104,14 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
             adapter =
                 MarkwonAdapter.builder(R.layout.listitem_topic_md_node, R.id.md_text_view)
                     //register a delegate to display comment item in markdown adapter
-                    .adapterDelegate(TopicMarkdownAdapterDelegate(dataList))
+                    .adapterDelegate(
+                        TopicMarkdownAdapterDelegate(dataList,
+                            object : TopicMarkdownAdapterDelegate.OnItemClickListener {
+                                override fun onItemClick(comment: Comment) {
+                                    onClickComment(comment)
+                                }
+                            })
+                    )
                     .build()
             rv.adapter = adapter
         } else {
@@ -120,5 +140,56 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
         }
         dataList.addAll(newList)
         adapter!!.notifyDataSetChanged()
+    }
+
+    private fun onClickComment(comment: Comment) {
+        if (comment.isDeleted) {
+            return
+        }
+        if (!AccountManager.getInstance().isLogin || comment.user == null) {
+            return
+        }
+        if (!comment.canAction()) {
+            return
+        }
+        val user = AccountManager.getInstance().loginUser
+        if (user!!.id == comment.user!!.id) {
+            val items = arrayOf<CharSequence>(
+                getString(R.string.comment_option_edit),
+                getString(R.string.comment_option_delete)
+            )
+            MaterialAlertDialogBuilder(context!!)
+                .setItems(items) { _, which ->
+                    if (which == 0) {
+                        commentBar.setEditComment(comment)
+                    } else if (which == 1) {
+                        deleteComment(comment)
+                    }
+                }.create().show()
+        }
+    }
+
+    private fun deleteComment(comment: Comment) {
+        MaterialAlertDialogBuilder(context!!)
+            .setTitle(R.string.comment_option_delete)
+            .setMessage(R.string.comment_option_delete_msg)
+            .setPositiveButton(R.string.confirm) { _, _ ->
+                presenter.deleteReply(comment.id)
+            }
+            .create().show()
+    }
+
+    override fun onDeleteReply(replyId: Long) {
+        if (replyId <= 0L) {
+            Toast.makeText(context!!, R.string.error_request_failed, Toast.LENGTH_SHORT).show()
+            return
+        }
+        for (item in dataList) {
+            if (item.id == replyId) {
+                item.isDeleted = true
+                adapter?.notifyDataSetChanged()
+                break
+            }
+        }
     }
 }
