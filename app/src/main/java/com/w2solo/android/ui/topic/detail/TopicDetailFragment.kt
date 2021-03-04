@@ -59,6 +59,8 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View, IScrollToT
         rv.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         presenter = TopicDetailPresenterImpl(this)
+        addLifecycleObserver(presenter)
+
         refreshLayout = fview(R.id.swipe_refresh_layout)!!
         refreshLayout.setOnRefreshListener {
             if (topic != null) {
