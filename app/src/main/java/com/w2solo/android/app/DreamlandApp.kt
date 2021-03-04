@@ -4,6 +4,7 @@ import android.app.Application
 import com.w2solo.android.BuildConfig
 import com.w2solo.android.app.account.AccountManager
 import com.w2solo.android.module.keyvalue.KV
+import com.w2solo.android.sdks.BuglyHelper
 import com.w2solo.android.utils.AppLog
 
 class DreamlandApp : Application() {
@@ -19,6 +20,6 @@ class DreamlandApp : Application() {
         KV.init(this) { "${AccountManager.getInstance().loginUserID}" }
         //init account
         AccountManager.getInstance()
-
+        BuglyHelper.init(this)
     }
 }

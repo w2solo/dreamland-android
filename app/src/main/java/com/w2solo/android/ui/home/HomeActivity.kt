@@ -3,6 +3,7 @@ package com.w2solo.android.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
+import com.tencent.bugly.beta.Beta
 import com.w2solo.android.R
 import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.activity.BaseToolbarActivity
@@ -41,6 +42,8 @@ class HomeActivity : BaseToolbarActivity(), HomeActContract.View {
         //check account token when app launch
         viewPager2.postDelayed({
             presenter.init()
+            Beta.init(this, false)
+            Beta.checkUpgrade(false, false)
         }, 1000)
     }
 

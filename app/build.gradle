@@ -13,6 +13,10 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
+        ndk {
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
 
     buildTypes {
@@ -73,4 +77,7 @@ dependencies {
 //    implementation "io.noties.markwon:recycler:$markwon_version"
 //    implementation"io.noties.markwon:recycler-table:$markwon_version"
 //    implementation "io.noties.markwon:syntax-highlight:$markwon_version"
+
+    implementation 'com.tencent.bugly:crashreport_upgrade:1.5.0'
+//    implementation 'com.tencent.bugly:crashreport:latest.release'
 }
