@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout style="@style/AppBarLayoutStyle">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/home_topic_list"
             style="@style/ToolBarStyle"
+            android:elevation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:navigationIcon="@null"
-            app:title="@string/tab_topics" />
+            app:title="@string/tab_topics">
+
+            <!--                <com.google.android.material.button.MaterialButton-->
+            <!--                    android:id="@+id/home_current_node"-->
+            <!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="right|center_vertical"-->
+            <!--                    android:layout_marginRight="@dimen/keyline_vertical"-->
+            <!--                    android:minWidth="48dp"-->
+            <!--                    android:textColor="?colorSecondary"-->
+            <!--                    android:visibility="gone"-->
+            <!--                    tools:text="@string/not_followed" />-->
+        </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -26,4 +41,4 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/listitem_topic" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

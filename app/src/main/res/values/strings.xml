@@ -62,6 +62,7 @@
 
     <!--    Node-->
     <string name="title_node_details">节点</string>
+    <string name="all_node">所有节点</string>
 
     <!--    Common-->
     <string name="confirm">确定</string>
