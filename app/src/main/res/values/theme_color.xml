@@ -32,4 +32,5 @@
     <color name="color_on_surface">@color/black</color>
     <color name="color_on_error">@color/white</color>
 
+    <color name="text_color_dark_common">#FFAAAAAA</color>
 </resources>
