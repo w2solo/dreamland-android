@@ -1,12 +1,14 @@
 package com.w2solo.android.ui.topic.detail
 
 import android.graphics.Typeface
+import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.imageview.ShapeableImageView
 import com.w2solo.android.R
+import com.w2solo.android.data.entity.Action
 import com.w2solo.android.data.entity.Comment
 import com.w2solo.android.ui.base.adapter.EasyHolder
 
@@ -34,16 +36,26 @@ class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
         userName.setOnClickListener(clickListener)
 
         if (comment.isDeleted) {
-            content.setText(R.string.comment_has_deleted)
+            content.setText(R.string.action_deleted)
             content.isEnabled = false
         } else {
-            content.isEnabled = true
-            if (comment.canShow()) {
+            val action = comment.action
+            if (!TextUtils.isEmpty(action)) {
+                content.isEnabled = false
+                content.setTypeface(null, Typeface.BOLD)
+                val textResId =
+                    when (action) {
+                        Action.Excellent -> R.string.action_excellent
+                        Action.Ban -> R.string.action_deleted
+                        Action.Close -> R.string.action_close
+                        Action.ReOpen -> R.string.action_reopen
+                        else -> R.string.action_reopen
+                    }
+                content.setText(textResId)
+            } else {
+                content.isEnabled = true
                 content.setTypeface(null, Typeface.NORMAL)
                 content.text = comment.body
-            } else {
-                content.setText(R.string.action_excellent)
-                content.setTypeface(null, Typeface.BOLD)
             }
         }
         itemView.setOnClickListener {

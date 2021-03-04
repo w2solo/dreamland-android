@@ -5,6 +5,11 @@
     <string name="tab_discover">发现</string>
     <string name="tab_me">我的</string>
 
+    <!--    Discover-->
+    <string name="discover_tab_new_hackers">New</string>
+    <string name="discover_tab_products">Products</string>
+    <string name="discover_tab_top_hackers">Top</string>
+
     <!--    Settings-->
     <string name="w2solo_rules">社区规则</string>
     <string name="group_guide">加入社群</string>
@@ -32,8 +37,13 @@
     <!--Comment-->
     <string name="comment_send">回复</string>
     <string name="comment_title">评论区</string>
+
     <string name="action_excellent">标记为精华帖</string>
-    <string name="comment_has_deleted">评论已经被删除</string>
+    <string name="action_deleted">评论已经被删除</string>
+    <string name="action_close">关闭了讨论</string>
+    <string name="action_reopen">重新开启了讨论</string>
+    <string name="action_unknow">未知操作</string>
+
     <string name="hint_input_comment">留言回复...</string>
     <string name="comment_option_edit">修改评论</string>
     <string name="comment_option_delete">删除评论</string>
