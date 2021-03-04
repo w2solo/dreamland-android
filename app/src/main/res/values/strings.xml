@@ -66,6 +66,7 @@
 
     <!--    Common-->
     <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
     <string name="back">返回</string>
     <string name="close">关闭</string>
     <string name="error_invalid_params">参数错误</string>

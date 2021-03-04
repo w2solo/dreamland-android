@@ -68,6 +68,8 @@ class SettingsFrag : BaseFragment() {
                         .setPositiveButton(R.string.confirm) { _, _ ->
                             AccountManager.getInstance().logout()
                         }
+                        .setNegativeButton(R.string.cancel, null)
+                        .create().show()
                 }
                 true
             }

@@ -176,7 +176,7 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View, IScrollToT
             .setMessage(R.string.comment_option_delete_msg)
             .setPositiveButton(R.string.confirm) { _, _ ->
                 presenter.deleteReply(comment.id)
-            }
+            }.setNegativeButton(R.string.cancel, null)
             .create().show()
     }
 
