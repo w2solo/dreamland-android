@@ -31,11 +31,15 @@ class TopicVH(itemView: View) : EasyHolder(itemView) {
         val user = topic.user
         if (user != null) {
             sb.append("@${user.name}")
-                .append("·")
         }
         if (topic.repliesCount > 0) {
-            sb.append("阅读 ")
-                .append("${topic.repliesCount}")
+            sb.append("·")
+                .append(
+                    itemView.context.getString(
+                        R.string.topic_replies_count,
+                        topic.repliesCount
+                    )
+                )
         }
         info.text = sb
         itemView.setOnClickListener {

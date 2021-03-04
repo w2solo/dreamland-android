@@ -1,10 +1,7 @@
 package com.w2solo.android.http
 
 import com.w2solo.android.app.account.Token
-import com.w2solo.android.http.result.ReplyListBean
-import com.w2solo.android.http.result.TopicBean
-import com.w2solo.android.http.result.TopicListBean
-import com.w2solo.android.http.result.UserBean
+import com.w2solo.android.http.result.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -49,4 +46,12 @@ interface ApiService {
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): Observable<ReplyListBean>
+
+    @FormUrlEncoded
+    //话题详情
+    @POST("api/v3/topics/{topic_id}/replies")
+    fun sendTopicReply(
+        @Path("topic_id") topic_id: Long,
+        @Field("body") body:String,
+    ): Observable<ReplyBean>
 }

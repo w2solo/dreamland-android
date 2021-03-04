@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.w2solo.android.ui.commentbar.CommentBar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/comment_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -16,7 +16,8 @@
         android:background="@drawable/bg_selector_surface"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="@dimen/keyline_horizontal">
+        android:paddingLeft="@dimen/keyline_horizontal"
+        android:paddingRight="@dimen/keyline_horizontal">
 
         <EditText
             android:id="@+id/comment_bar_input"
@@ -24,19 +25,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
-            android:paddingVertical="@dimen/keyline_8"
-            android:textSize="@dimen/text_size_desc"
-            tools:text="为什么会开发这个工具？工作和生活需要，经常需要去多个网站搜索信息" />
+            android:hint="@string/hint_input_comment"
+            android:minHeight="42dp"
+            android:textSize="@dimen/text_size_14" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/comment_bar_send"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:minWidth="32dp"
             android:text="@string/comment_send"
             android:textColor="@color/text_color_button_send" />
     </LinearLayout>
-</LinearLayout>
+</com.w2solo.android.ui.commentbar.CommentBar>

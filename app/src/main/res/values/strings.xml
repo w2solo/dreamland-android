@@ -28,14 +28,18 @@
 
     <!--    Topic-->
     <string name="title_topic_detail">话题详情</string>
+    <string name="topic_replies_count">评论 %1$s</string>
     <!--Comment-->
     <string name="comment_send">回复</string>
     <string name="comment_title">评论区</string>
     <string name="action_excellent">标记为精华帖</string>
+    <string name="comment_has_deleted">评论已经被删除</string>
+    <string name="hint_input_comment">留言回复...</string>
 
     <!--    Common-->
     <string name="back">返回</string>
     <string name="close">关闭</string>
     <string name="error_invalid_params">参数错误</string>
     <string name="error_data_load_failed">数据加载错误</string>
+    <string name="error_request_failed">请求失败，请稍后重试 </string>
 </resources>

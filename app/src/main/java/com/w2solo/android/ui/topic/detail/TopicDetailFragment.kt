@@ -10,6 +10,7 @@ import com.w2solo.android.R
 import com.w2solo.android.data.entity.Comment
 import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.fragment.BaseFragment
+import com.w2solo.android.ui.commentbar.CommentBar
 import com.w2solo.android.ui.commonfrag.CommonFragActivity
 import com.w2solo.android.ui.topic.markdown.MDParser
 import com.w2solo.markwon.recycler.ext.MarkwonAdapter
@@ -39,6 +40,7 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
     private lateinit var refreshLayout: SwipeRefreshLayout
     private var adapter: MarkwonAdapter? = null
     private lateinit var presenter: TopicDetailPresenterImpl
+    private lateinit var commentBar: CommentBar
 
     override fun getLayout() = R.layout.topic_detail_fragment
 
@@ -60,6 +62,16 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
                 presenter.loadTopic(topic!!.id)
             }
         }
+        commentBar = fview(R.id.comment_bar)!!
+        commentBar.setCallback(object : CommentBar.Callback {
+            override fun onSuccess(newComment: Comment) {
+                val oldSize = adapter?.itemCount ?: 0
+                dataList.add(newComment)
+                val newSize = adapter?.itemCount ?: 0
+                adapter?.notifyItemRangeChanged(oldSize, newSize - oldSize)
+            }
+        })
+
         val topicId = if (topic != null) topic!!.id else initTopicId
         refreshLayout.isRefreshing = true
         presenter.loadTopic(topicId)
@@ -79,7 +91,7 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
             adapter =
                 MarkwonAdapter.builder(R.layout.listitem_topic_md_node, R.id.md_text_view)
                     //register a delegate to display comment item in markdown adapter
-                    .adapterDelegate(TopicMarkdowAdapterDelegate(dataList))
+                    .adapterDelegate(TopicMarkdownAdapterDelegate(dataList))
                     .build()
             rv.adapter = adapter
         } else {
@@ -87,6 +99,7 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View {
             topic!!.bodyHtml = newTopic!!.bodyHtml
             topic!!.body = newTopic.body
         }
+        commentBar.setDataId(topic!!.id)
         val markwon = MDParser.parseMarkDown(context!!)
         adapter!!.setMarkdown(markwon, topic!!.bodyHtml!!)
         //refresh topic details

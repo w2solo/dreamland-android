@@ -35,14 +35,20 @@ class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
         userAvatar.setOnClickListener(clickListener)
         userName.setOnClickListener(clickListener)
 
-        if (!TextUtils.isEmpty(comment.action)) {
-            if (Action.Excellent == comment.action) {
-                content.setText(R.string.action_excellent)
-                content.setTypeface(null, Typeface.BOLD)
-            }
+        if (comment.isDeleted) {
+            content.setText(R.string.comment_has_deleted)
+            content.isEnabled = false
         } else {
-            content.setTypeface(null, Typeface.NORMAL)
-            content.text = comment.body
+            content.isEnabled = true
+            if (!TextUtils.isEmpty(comment.action)) {
+                if (Action.Excellent == comment.action) {
+                    content.setText(R.string.action_excellent)
+                    content.setTypeface(null, Typeface.BOLD)
+                }
+            } else {
+                content.setTypeface(null, Typeface.NORMAL)
+                content.text = comment.body
+            }
         }
         itemView.setOnClickListener {
         }

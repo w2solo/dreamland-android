@@ -9,9 +9,9 @@ import com.w2solo.android.ui.base.adapter.EmptyVH
 import com.w2solo.android.utils.AppLog
 import com.w2solo.markwon.recycler.ext.RecyclerAdapterDelegate
 
-class TopicMarkdowAdapterDelegate(private val dataList: List<Comment>) : RecyclerAdapterDelegate {
+class TopicMarkdownAdapterDelegate(private val dataList: List<Comment>) : RecyclerAdapterDelegate {
     companion object {
-        const val TAG = "TopicMarkdowAdapterDelegate"
+        const val TAG = "TopicMarkdownAdapterDelegate"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {

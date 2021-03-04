@@ -20,6 +20,10 @@ class Comment() : Parcelable {
     @ColumnInfo(name = "created_at")
     lateinit var createdTime: String
 
+    @SerializedName("deleted")
+    @ColumnInfo(name = "deleted")
+    var isDeleted: Boolean = false
+
     @SerializedName("user")
     var user: User? = null
 
@@ -27,6 +31,7 @@ class Comment() : Parcelable {
         id = parcel.readLong()
         body = parcel.readString()
         createdTime = parcel.readString()!!
+        isDeleted = parcel.readInt() == 1
         user = parcel.readParcelable(User::class.java.classLoader)
     }
 
@@ -34,6 +39,7 @@ class Comment() : Parcelable {
         dest?.writeLong(id)
         dest?.writeString(body)
         dest?.writeString(createdTime)
+        dest?.writeInt(if (isDeleted) 1 else 0)
         dest?.writeParcelable(user, flags)
     }
 
