@@ -31,7 +31,7 @@ class TopicVH(itemView: View) : EasyHolder(itemView) {
         val sb = StringBuilder()
         val user = topic.user
         if (user != null) {
-            sb.append("@${user.name}")
+            sb.append("@${user.login}")
         }
         if (topic.repliesCount > 0) {
             sb.append(AppConfigs.MIDDLE_DOT)
