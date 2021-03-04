@@ -41,7 +41,7 @@ class Topic() : Parcelable {
 
     @SerializedName("node_id")
     @ColumnInfo(name = "node_id")
-    var nodeId: Int = 0
+    var nodeId: Long = 0
 
     @SerializedName("grade")
     @ColumnInfo(name = "grade")
@@ -75,7 +75,7 @@ class Topic() : Parcelable {
         repliesCount = parcel.readInt()
         likesCount = parcel.readInt()
         nodeName = parcel.readString()
-        nodeId = parcel.readInt()
+        nodeId = parcel.readLong()
         grade = parcel.readString()
         excellent = parcel.readInt()
         body = parcel.readString()
@@ -92,7 +92,7 @@ class Topic() : Parcelable {
         parcel.writeInt(repliesCount)
         parcel.writeInt(likesCount)
         parcel.writeString(nodeName)
-        parcel.writeInt(nodeId)
+        parcel.writeLong(nodeId)
         parcel.writeString(grade)
         parcel.writeInt(excellent)
         parcel.writeString(body)

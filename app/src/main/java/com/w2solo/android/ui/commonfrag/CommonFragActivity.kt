@@ -17,6 +17,8 @@ class CommonFragActivity : BaseToolbarActivity() {
     companion object {
         private val KEY_FRAG_KEY = "frag_key"
         private val KEY_FRAG_ARGS = "frag_args"
+        //can parse a title to show
+        public val KEY_TITLE_TEXT = "page_title_text"
 
         fun start(context: Context, @StringRes titleResId: Int) {
             start(context, titleResId, null)
@@ -46,7 +48,8 @@ class CommonFragActivity : BaseToolbarActivity() {
         val intent = intent
         val titleResId = intent.getIntExtra(KEY_FRAG_KEY, -1)
         val args = intent.getBundleExtra(KEY_FRAG_ARGS)
-        initInternal(titleResId, args)
+        val initTitleText = intent.getStringExtra(KEY_TITLE_TEXT)
+        initInternal(initTitleText, titleResId, args)
         if (mToolbar != null) {
             mToolbar!!.setOnClickListener {
                 if (curPage != null) {
@@ -58,15 +61,19 @@ class CommonFragActivity : BaseToolbarActivity() {
         }
     }
 
-    private fun initInternal(@StringRes titleResId: Int, args: Bundle?) {
+    private fun initInternal(titleText: String?, @StringRes titleResId: Int, args: Bundle?) {
         if (titleResId == -1) {
             return
         }
         var title: String? = null
-        try {
-            title = getString(titleResId)
-        } catch (thr: Throwable) {
-            thr.printStackTrace()
+        if (!TextUtils.isEmpty(titleText)) {
+            title = titleText
+        } else {
+            try {
+                title = getString(titleResId)
+            } catch (thr: Throwable) {
+                thr.printStackTrace()
+            }
         }
         if (TextUtils.isEmpty(title)) {
             Toast.makeText(this, R.string.error_invalid_params, Toast.LENGTH_SHORT).show();

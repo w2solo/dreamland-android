@@ -62,23 +62,28 @@ class MarkwonAdapterImpl(
         if (result) {
             return
         }
-        val node = nodes!![position]
+        val node = nodes!![getMarkdownItemPos(position)]
         val viewType: Int = getNodeViewType(node!!.javaClass)
         val entry: Entry<Node?, RecyclerView.ViewHolder?> = getEntry(viewType)
         entry.bindHolder(markwon, holder, node)
     }
 
-    override fun getItemCount(): Int {
-        val count = getNodeCount() + (adapterDelegate?.getItemCount() ?: 0)
-        return count
-    }
+    override fun getItemCount() =
+        getNodeCount() + (adapterDelegate?.getItemCount() ?: 0) + getHeaderCount()
 
     private fun getNodeCount() = nodes?.size ?: 0
+
+    private fun getHeaderCount() = adapterDelegate?.getHeaderCount() ?: 0
 
     /**
      * check is current position is between markwon nodes' range
      */
-    private fun isMarkDownNode(position: Int) = position < getNodeCount()
+    private fun isMarkDownNode(position: Int): Boolean {
+        val headerCount = getHeaderCount()
+        return position >= headerCount && position < (getNodeCount() + headerCount)
+    }
+
+    private fun getMarkdownItemPos(posInAdapter: Int) = posInAdapter - getHeaderCount()
 
     override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
         val isDelegateItem = adapterDelegate?.isDelegateItem(holder) ?: false
@@ -98,14 +103,14 @@ class MarkwonAdapterImpl(
         if (!isMarkDownNode(position)) {
             return adapterDelegate!!.getItemViewType(position, getNodeCount())
         }
-        return getNodeViewType(nodes!![position]!!.javaClass)
+        return getNodeViewType(nodes!![getMarkdownItemPos(position)]!!.javaClass)
     }
 
     override fun getItemId(position: Int): Long {
         if (!isMarkDownNode(position)) {
             return 0
         }
-        val node = nodes!![position]
+        val node = nodes!![getMarkdownItemPos(position)]
         val type: Int = getNodeViewType(node!!.javaClass)
         val entry: Entry<Node?, RecyclerView.ViewHolder?> = getEntry(type)
         return entry.id(node)

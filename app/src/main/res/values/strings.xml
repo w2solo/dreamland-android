@@ -60,6 +60,9 @@
     <string name="title_user_topic">发帖</string>
     <string name="title_user_reply">回帖</string>
 
+    <!--    Node-->
+    <string name="title_node_details">节点</string>
+
     <!--    Common-->
     <string name="confirm">确定</string>
     <string name="back">返回</string>

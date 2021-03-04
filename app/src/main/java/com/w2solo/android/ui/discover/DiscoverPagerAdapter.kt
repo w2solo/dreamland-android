@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.w2solo.android.app.AppConfigs
 import com.w2solo.android.ui.base.viewpager2.ViewPagerAdapterDelegate
-import com.w2solo.android.ui.user.topusers.TopUsersListFrag
 import com.w2solo.android.ui.topic.NodeTopicListFrag
+import com.w2solo.android.ui.user.topusers.TopUsersListFrag
 
 class DiscoverPagerAdapter(frag: Fragment) : FragmentStateAdapter(frag) {
 
@@ -19,19 +19,15 @@ class DiscoverPagerAdapter(frag: Fragment) : FragmentStateAdapter(frag) {
         if (frag == null) {
             frag =
                 when (position) {
-                    0 -> {
+                    0, 1 -> {
                         val arg = Bundle()
-                        arg.putLong(NodeTopicListFrag.EXTRA_NODE, AppConfigs.NODE_PRODUCTS)
-                        val frag = NodeTopicListFrag()
-                        frag.arguments = arg
-                        frag
-                    }
-                    1 -> {
-                        val arg = Bundle()
-                        arg.putLong(NodeTopicListFrag.EXTRA_NODE, AppConfigs.NODE_NEW_USERS)
-                        val frag = NodeTopicListFrag()
-                        frag.arguments = arg
-                        frag
+                        arg.putLong(
+                            NodeTopicListFrag.EXTRA_NODE_ID,
+                            if (position == 0) AppConfigs.NODE_PRODUCTS else AppConfigs.NODE_NEW_USERS
+                        )
+                        val newFrag = NodeTopicListFrag()
+                        newFrag.arguments = arg
+                        newFrag
                     }
                     else -> TopUsersListFrag()
                 }

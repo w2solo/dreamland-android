@@ -102,18 +102,16 @@ class TopicDetailFragment : BaseFragment(), TopicDetailContract.View, IScrollToT
         }
         if (adapter == null) {
             topic = newTopic
-            adapter =
-                MarkwonAdapter.builder(R.layout.listitem_topic_md_node, R.id.md_text_view)
-                    //register a delegate to display comment item in markdown adapter
-                    .adapterDelegate(
-                        TopicMarkdownAdapterDelegate(dataList,
-                            object : TopicMarkdownAdapterDelegate.OnItemClickListener {
-                                override fun onItemClick(comment: Comment) {
-                                    onClickComment(comment)
-                                }
-                            })
-                    )
-                    .build()
+            val adapterDelegate = TopicMarkdownAdapterDelegate(topic!!, dataList,
+                object : TopicMarkdownAdapterDelegate.OnItemClickListener {
+                    override fun onItemClick(comment: Comment) {
+                        onClickComment(comment)
+                    }
+                })
+            adapter = MarkwonAdapter.builder(R.layout.listitem_topic_md_node, R.id.md_text_view)
+                //register a delegate to display comment item in markdown adapter
+                .adapterDelegate(adapterDelegate)
+                .build()
             rv.adapter = adapter
         } else {
             //only replace content

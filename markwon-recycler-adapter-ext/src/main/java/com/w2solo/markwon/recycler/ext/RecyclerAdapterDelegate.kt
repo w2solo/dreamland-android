@@ -14,4 +14,9 @@ interface RecyclerAdapterDelegate {
     fun isDelegateItem(holder: RecyclerView.ViewHolder): Boolean
 
     fun getItemCount(): Int
+
+    /**
+     * Add a header before markdown list
+     */
+    fun getHeaderCount(): Int
 }

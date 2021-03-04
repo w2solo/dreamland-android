@@ -36,9 +36,7 @@
             android:background="@drawable/bg_selector_surface_transparent"
             android:includeFontPadding="false"
             android:paddingLeft="@dimen/keyline_8"
-            android:paddingTop="2dp"
             android:paddingRight="8dp"
-            android:paddingBottom="2dp"
             tools:text="cmlanche" />
 
         <Space
