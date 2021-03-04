@@ -20,7 +20,7 @@ class TopicDetailVH(itemView: View) : EasyHolder(itemView) {
     private val userAvatar = fview<ShapeableImageView>(R.id.topic_user_avatar)
     private val userName = fview<TextView>(R.id.topic_user_name)
     private val time = fview<TextView>(R.id.topic_time)
-    private val topicNodeLayout = fview<TextView>(R.id.topic_node_layout)
+    private val topicNodeLayout = fview<View>(R.id.topic_node_layout)
     private val topicNode = fview<TextView>(R.id.topic_node)
 
     fun bind(topic: Topic) {

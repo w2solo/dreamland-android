@@ -45,25 +45,31 @@ class TopicMarkdownAdapterDelegate(
     override fun onBindViewHolder(
         holder: RecyclerView.ViewHolder, position: Int, mdNodeCount: Int
     ): Boolean {
-        if (holder is EmptyVH) {
-            return true
-        } else if (holder is TopicCommentVH) {
-            val dataIndex = position - mdNodeCount - 1
-            holder.bind(dataList[dataIndex])
-            holder.itemView.setTag(R.id.tag_view_data, dataIndex)
-            holder.itemView.setOnClickListener {
-                val tag = it.getTag(R.id.tag_view_data)
-                if (tag != null && tag is Int) {
-                    onItemClickListener?.onItemClick(dataList[tag])
-                }
+        when (holder) {
+            is EmptyVH -> {
+                return true
             }
-            return true
-        } else if (holder is TopicDetailVH) {
-            holder.bind(topic)
-            return true
+            is TopicCommentVH -> {
+                val dataIndex = position - mdNodeCount - 1 - getHeaderCount()
+                holder.bind(dataList[dataIndex])
+                holder.itemView.setTag(R.id.tag_view_data, dataIndex)
+                holder.itemView.setOnClickListener {
+                    val tag = it.getTag(R.id.tag_view_data)
+                    if (tag != null && tag is Int) {
+                        onItemClickListener?.onItemClick(dataList[tag])
+                    }
+                }
+                return true
+            }
+            is TopicDetailVH -> {
+                holder.bind(topic)
+                return true
+            }
+            else -> {
+                AppLog.d(TAG, "onBindViewHolder---position=$position")
+                return false
+            }
         }
-        AppLog.d(TAG, "onBindViewHolder---position=$position")
-        return false
     }
 
     override fun getItemViewType(position: Int, mdNodeCount: Int): Int {
