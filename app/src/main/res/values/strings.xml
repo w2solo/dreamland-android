@@ -26,6 +26,7 @@
     <string name="title_login">登录 W2Solo 账号</string>
     <string name="login">登录</string>
     <string name="logout">退出</string>
+    <string name="logout_confirm_msg">确定退出当前账号吗？</string>
     <string name="logout_contd">退出登录</string>
     <string name="register">注册</string>
     <string name="hint_account">用户ID/邮箱</string>

@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.w2solo.android.R
 import com.w2solo.android.app.account.AccountManager
 import com.w2solo.android.app.broadcast.AppBroadcast
@@ -62,7 +63,11 @@ class SettingsFrag : BaseFragment() {
             toolbar?.inflateMenu(R.menu.menu_settings)
             toolbar?.setOnMenuItemClickListener {
                 if (it.itemId == R.id.action_logout) {
-                    AccountManager.getInstance().logout()
+                    MaterialAlertDialogBuilder(context!!).setTitle(R.string.logout)
+                        .setMessage(R.string.logout_confirm_msg)
+                        .setPositiveButton(R.string.confirm) { _, _ ->
+                            AccountManager.getInstance().logout()
+                        }
                 }
                 true
             }
