@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.w2solo.android.app.AppConfigs
 import com.w2solo.android.ui.base.viewpager2.ViewPagerAdapterDelegate
-import com.w2solo.android.ui.discover.topusers.TopUsersListFrag
+import com.w2solo.android.ui.user.topusers.TopUsersListFrag
 import com.w2solo.android.ui.topic.NodeTopicListFrag
 
 class DiscoverPagerAdapter(frag: Fragment) : FragmentStateAdapter(frag) {

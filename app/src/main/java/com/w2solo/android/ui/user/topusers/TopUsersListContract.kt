@@ -1,4 +1,4 @@
-package com.w2solo.android.ui.discover.topusers
+package com.w2solo.android.ui.user.topusers
 
 import com.w2solo.android.data.entity.User
 import com.w2solo.android.mvp.IPresenter

@@ -1,4 +1,4 @@
-package com.w2solo.android.ui.discover.topusers
+package com.w2solo.android.ui.user.topusers
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
