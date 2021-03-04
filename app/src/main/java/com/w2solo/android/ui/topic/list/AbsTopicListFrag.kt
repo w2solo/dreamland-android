@@ -11,6 +11,13 @@ import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.fragment.BaseFragment
 import com.w2solo.android.utils.ViewHelper
 
+//TODO 考虑改进为 多种 filter 机制，避免写多个子类去实现 topic 的加载，应该由此页面完成即可
+/**
+ * filters
+ * by-node
+ * by-user
+ * by-type
+ */
 abstract class AbsTopicListFrag : BaseFragment(), TopicListContract.View, IScrollToTop {
 
     private val dataList = arrayListOf<Topic>()

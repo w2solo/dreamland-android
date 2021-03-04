@@ -7,6 +7,12 @@ import com.w2solo.android.utils.AppLog
 import io.noties.markwon.LinkResolver
 import io.noties.markwon.LinkResolverDef
 
+/**
+ * 考虑到针对不同App的适配性，此处应该改为可配置
+ * topic
+ * user
+ * node
+ */
 class AppLinkResolver : LinkResolver {
 
     private val defaultResolver = LinkResolverDef()

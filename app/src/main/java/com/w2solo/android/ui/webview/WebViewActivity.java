@@ -17,9 +17,9 @@ import com.w2solo.android.utils.AppLog;
 
 /**
  * 显示网页信息
- * Project LaughDay4And
- * Package com.laughday.activity
- * Created by LikeCarmack on 12/6/14.
+ * Project QianjiAnd
+ * Package com.mutangtech.qianji
+ * Created by github.com/litang0908 on 12/6/14.
  */
 public class WebViewActivity extends BaseToolbarActivity {
 

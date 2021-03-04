@@ -6,6 +6,9 @@ import com.tencent.bugly.crashreport.CrashReport
 import com.w2solo.android.R
 import com.w2solo.android.utils.AppLog
 
+/**
+ * TODO APPID 应该做成可配置
+ */
 object BuglyHelper {
     fun init(application: Application) {
         Beta.autoCheckAppUpgrade = false
@@ -13,7 +16,7 @@ object BuglyHelper {
         Beta.largeIconId = R.mipmap.ic_launcher
         Beta.smallIconId = R.mipmap.ic_launcher
         Beta.defaultBannerId = R.mipmap.ic_launcher
-        Beta.enableNotification = true;
+        Beta.enableNotification = true
         CrashReport.initCrashReport(application, "e86e4644f7", AppLog.isEnabled())
     }
 }

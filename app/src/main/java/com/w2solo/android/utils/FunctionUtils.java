@@ -38,7 +38,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 
 /**
- * Created by tangyuchun on 2014/8/17.
+ * Created by github.com/litang0908 on 2014/8/17.
  */
 public class FunctionUtils {
     public static double parseDouble(String value) {

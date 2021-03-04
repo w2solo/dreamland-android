@@ -5,6 +5,8 @@ import com.w2solo.android.ui.base.lifecycle.ILifecycleObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
+//TODO 增加对 Lifecycle 机制的 check 逻辑，避免 View 业务创建 Presenter 后，忘记
+// addLifecycleObserver, 进而导致页面泄漏
 abstract class BasePresenter<V : IView>(var view: V?) : IPresenter<V>, ILifecycleObserver {
 
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()

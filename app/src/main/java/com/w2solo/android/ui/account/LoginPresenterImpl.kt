@@ -11,7 +11,6 @@ import com.w2solo.android.mvp.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-
 class LoginPresenterImpl(view: LoginContract.View) : BasePresenter<LoginContract.View>(view),
     LoginContract.Presenter {
 

@@ -16,7 +16,7 @@ import com.w2solo.android.utils.AppLog
 import com.w2solo.android.utils.FunctionUtils
 
 /**
- * Created by tangyuchun on 1/8/16.
+ * Created by github.com/litang0908 on 1/8/16.
  */
 class WebViewFragment : BaseFragment() {
 

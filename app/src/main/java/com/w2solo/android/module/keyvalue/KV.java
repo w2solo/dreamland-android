@@ -18,12 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 使用MMKV做新的KV存储系统，同时需要兼容旧的SP
- * 原谅我写这么诡异的代码，SP目前没法直接迁移 = =
- * <p>
- * Created by tanjie on 15-1-28.
- *
- * @author tanjie
+ * Created by github.com/litang0908 on 2018/11/12.
  */
 public class KV {
 
