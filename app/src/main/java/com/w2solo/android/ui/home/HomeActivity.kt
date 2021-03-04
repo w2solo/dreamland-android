@@ -7,10 +7,12 @@ import com.w2solo.android.R
 import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.activity.BaseToolbarActivity
 
-class HomeActivity : BaseToolbarActivity() {
+class HomeActivity : BaseToolbarActivity(), HomeActContract.View {
 
     private lateinit var viewPager2: ViewPager2
     private lateinit var adapter: HomePagerAdapter
+    private val presenter = HomeActPresenter(this)
+
     override fun getLayout() = R.layout.home_activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,12 @@ class HomeActivity : BaseToolbarActivity() {
                 setTab(position, false)
             }
         })
+
+        addLifecycleObserver(presenter)
+        //check account token when app launch
+        viewPager2.postDelayed({
+            presenter.init()
+        }, 1000)
     }
 
     private fun setTab(index: Int, byTab: Boolean) {

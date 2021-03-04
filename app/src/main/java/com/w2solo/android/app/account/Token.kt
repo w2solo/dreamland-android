@@ -1,6 +1,7 @@
 package com.w2solo.android.app.account
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 class Token {
     @SerializedName("access_token")
@@ -14,4 +15,10 @@ class Token {
 
     @SerializedName("expires_in")
     var expiresIn: Long = 0
+
+    fun isExpired(): Boolean {
+        val now = Calendar.getInstance().timeInMillis / 1000
+        val expireEnd = expiresIn + createAt
+        return expireEnd < now
+    }
 }

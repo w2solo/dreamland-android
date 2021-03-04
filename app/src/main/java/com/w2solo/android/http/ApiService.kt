@@ -26,6 +26,15 @@ interface ApiService {
         @Field("grant_type") grant_type: String = "password"
     ): Observable<Token>
 
+    @FormUrlEncoded
+    @POST("oauth/token?")
+    fun refreshAccessToken(
+        @Field("refresh_token") refresh_token: String,
+        @Field("client_id") client_id: String,
+        @Field("client_secret") client_secret: String,
+        @Field("grant_type") grant_type: String = "refresh_token"
+    ): Observable<Token>
+
     @GET("api/v3/users/me")
     fun getLoginUserInfo(@Header("Authorization") token: String): Observable<UserBean>
 
