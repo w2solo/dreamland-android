@@ -1,17 +1,63 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DreamlandAndroid" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.DreamlandAndroid" parent="@style/MyTheme.AppBase">
+        <!--Material color attributes -->
+        <!--        主题色-->
+        <item name="colorPrimary">@color/theme_color_primary</item>
+        <item name="colorSecondary">@color/theme_color_secondary</item>
+
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorError">@color/color_error</item>
+
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+        <item name="colorOnSecondary">@color/color_on_secondary</item>
+        <item name="colorOnBackground">@color/color_on_background</item>
+        <item name="colorOnSurface">@color/color_on_surface</item>
+        <item name="colorOnError">@color/color_on_error</item>
+
+    </style>
+
+    <style name="MyTheme.AppBase" parent="Theme.MaterialComponents.NoActionBar">
+        <!--        背景色-->
+        <item name="android:colorBackground">@color/color_background</item>
+
+        <!--Component styles-->
+        <item name="materialAlertDialogTheme">@style/MyTheme.Dialog</item>
+        <item name="bottomSheetDialogTheme">@style/MyTheme.BottomSheetDialog</item>
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
+
+        <!--        自定义 START-->
+        <!--        文字默认样式-->
+        <item name="android:textViewStyle">@style/CommonTitleAppearance</item>
+
+        <!--        额外增加 Caption 和 Desc 文字颜色 -->
+        <!--        textColorPrimary 默认就是 colorOnSurface，无需更更改-->
+        <item name="android:textColorHint">?android:textColorSecondary</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+
+        <!--        EditText文字顏色-->
+        <item name="editTextColor">?colorSecondary</item>
+        <item name="android:editTextColor">?colorSecondary</item>
+
+        <!--        StatusBar-->
+        <item name="android:statusBarColor">?colorPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <!--        NavigationBar-->
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+        <!--        夜间模式下，将导航栏背景色调整成黑色-->
+        <item name="android:navigationBarColor">?colorPrimary</item>
+
+        <!--        非夜间模式下，将导航栏背景色调整成灰色-->
+        <!--        V27以下，使用默认的导航栏颜色（黑色），因为调整成白色或者黑色后，导航栏图标颜色仍然是白色，看不清-->
+        <!--        <item name="android:navigationBarColor">?android:colorBackground</item>-->
+
+        <!--Remap legacy AppCompat attributes to MaterialComponent attributes-->
+        <item name="colorPrimaryDark">?colorPrimaryVariant</item>
+        <item name="colorAccent">?colorSecondary</item>
+
+        <item name="checkboxStyle">@style/Widget.MaterialComponents.CompoundButton.CheckBox</item>
+        <item name="radioButtonStyle">@style/Widget.MaterialComponents.CompoundButton.RadioButton
+        </item>
     </style>
 
 </resources>

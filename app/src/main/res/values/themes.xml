@@ -1,8 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DreamlandAndroid" parent="@style/MyTheme.DayNight" />
-
-    <style name="MyTheme.DayNight" parent="MyTheme.AppBase">
+    <style name="Theme.DreamlandAndroid" parent="MyTheme.AppBase">
         <!--Material color attributes -->
         <!--        主题色-->
         <item name="colorPrimary">@color/theme_color_primary</item>
@@ -17,7 +15,14 @@
         <item name="colorOnSurface">@color/color_on_surface</item>
         <item name="colorOnError">@color/color_on_error</item>
 
-        <item name="android:textColorHint">?android:textColorSecondary</item>
+    </style>
+
+    <style name="MyTheme.AppBase" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="isLightTheme">true</item>
+        <item name="android:textColorSecondary">@color/theme_text_color_secondary</item>
+        <!--        背景色-->
+        <item name="android:colorBackground">@color/color_background</item>
+
 
         <!--Component styles-->
         <item name="materialAlertDialogTheme">@style/MyTheme.Dialog</item>
@@ -30,24 +35,20 @@
 
         <!--        额外增加 Caption 和 Desc 文字颜色 -->
         <!--        textColorPrimary 默认就是 colorOnSurface，无需更更改-->
-        <item name="android:textColorSecondary">@color/theme_text_color_secondary</item>
-        <item name="android:textColor">?colorOnBackground</item>
+        <item name="android:textColorHint">?android:textColorSecondary</item>
+        <item name="android:textColor">?colorOnPrimary</item>
 
         <!--        EditText文字顏色-->
         <item name="editTextColor">?colorSecondary</item>
         <item name="android:editTextColor">?colorSecondary</item>
-    </style>
-
-
-    <style name="MyTheme.AppBase" parent="Base.MaterialThemeBuilder" />
-
-    <style name="Base.MaterialThemeBuilder" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!--        背景色-->
-        <item name="android:colorBackground">@color/color_background</item>
 
         <!--        StatusBar-->
         <item name="android:statusBarColor">?colorPrimary</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <!--        NavigationBar-->
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <!--        夜间模式下，将导航栏背景色调整成黑色-->
+        <item name="android:navigationBarColor">?colorSurface</item>
 
         <!--        非夜间模式下，将导航栏背景色调整成灰色-->
         <!--        V27以下，使用默认的导航栏颜色（黑色），因为调整成白色或者黑色后，导航栏图标颜色仍然是白色，看不清-->
