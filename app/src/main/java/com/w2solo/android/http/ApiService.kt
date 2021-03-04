@@ -78,6 +78,13 @@ interface ApiService {
         @Query("limit") limit: Int
     ): Observable<ReplyListBean>
 
+    //用户回帖列表
+    @GET("api/v3/users/{login}/replies")
+    fun getUserReplies(
+        @Path("login") login: String
+    ): Observable<ReplyListBean>
+
+
     @FormUrlEncoded
     //发布帖子
     @POST("api/v3/topics/{topic_id}/replies")

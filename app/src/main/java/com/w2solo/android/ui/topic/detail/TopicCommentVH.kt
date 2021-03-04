@@ -60,7 +60,5 @@ class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
                 content.text = comment.body
             }
         }
-        itemView.setOnClickListener {
-        }
     }
 }

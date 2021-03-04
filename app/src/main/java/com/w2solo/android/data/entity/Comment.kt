@@ -14,6 +14,9 @@ class Comment() : Parcelable {
     @SerializedName("body")
     var body: String? = null
 
+    @SerializedName("topic_id")
+    var topicId: Long = -1L
+
     @SerializedName("action")
     var action: String? = null
 
