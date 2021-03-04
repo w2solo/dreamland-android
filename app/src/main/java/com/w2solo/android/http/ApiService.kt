@@ -93,4 +93,7 @@ interface ApiService {
     @GET("api/v3/users")
     fun getTopUsers(): Observable<UserListBean>
 
+    //节点列表
+    @GET("api/v3/nodes")
+    fun getNodeList(): Observable<NodeListBean>
 }
