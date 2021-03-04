@@ -1,5 +1,6 @@
 package com.w2solo.android.ui.topic.list
 
+import android.text.TextUtils
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,12 @@ abstract class AbsTopicListFrag : BaseFragment(), TopicListContract.View, IScrol
 
     abstract fun getCurrentNodeId(): Long
 
+    open fun getUserLogin(): String? {
+        return null
+    }
+
+    open fun canLoadMore() = true
+
     override fun initViews() {
         fview<Toolbar>(R.id.home_topic_list)?.setOnClickListener {
             scrollToTop()
@@ -34,22 +41,33 @@ abstract class AbsTopicListFrag : BaseFragment(), TopicListContract.View, IScrol
 
         refreshLayout = fview(R.id.swipe_refresh_layout)!!
         refreshLayout.setOnRefreshListener {
-            presenter.loadList(true, getCurrentNodeId())
+            loadTopicList(true)
         }
-        addLifecycleObserver(presenter)
-        refreshLayout.isRefreshing = true
-        presenter.loadList(true, getCurrentNodeId())
-
         rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
+                if (!canLoadMore()) {
+                    return
+                }
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
                     && layoutManager.findLastVisibleItemPosition() == dataList.size - 1
                 ) {
-                    presenter.loadList(false, getCurrentNodeId())
+                    loadTopicList(false)
                 }
             }
         })
+        addLifecycleObserver(presenter)
+        refreshLayout.isRefreshing = true
+        loadTopicList(true)
+    }
+
+    private fun loadTopicList(isRefresh: Boolean) {
+        val userLogin = getUserLogin()
+        if (!TextUtils.isEmpty(userLogin)) {
+            presenter.loadListByUser(isRefresh, userLogin!!)
+        } else {
+            presenter.loadListByNode(isRefresh, getCurrentNodeId())
+        }
     }
 
     override fun onGetList(newList: List<Topic>?, isRefresh: Boolean) {

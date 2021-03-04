@@ -6,4 +6,6 @@ object AppConfigs {
 
     const val NODE_NEW_USERS = 19L
     const val NODE_PRODUCTS = 9L
+
+    const val MIDDLE_DOT = "·"
 }

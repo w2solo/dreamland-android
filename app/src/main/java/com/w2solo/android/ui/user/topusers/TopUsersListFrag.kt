@@ -29,6 +29,7 @@ class TopUsersListFrag : BaseFragment(), TopUsersListContract.View, IScrollToTop
         refreshLayout.setOnRefreshListener {
             presenter.loadList(true)
         }
+        addLifecycleObserver(presenter)
         refreshLayout.isRefreshing = true
         presenter.loadList(true)
     }

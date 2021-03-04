@@ -73,6 +73,11 @@
         <item name="cornerSize">16dp</item>
     </style>
 
+    <style name="LargeAvatarStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
     <style name="SettingAvatarStyle">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
@@ -81,5 +86,22 @@
     <style name="CommentAvatarStyle">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">@dimen/avatar_size_8</item>
+    </style>
+
+    <style name="UserInfoCount">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@drawable/bg_selector_surface</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/keyline_vertical</item>
+    </style>
+
+    <style name="UserInfoCount_Num">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

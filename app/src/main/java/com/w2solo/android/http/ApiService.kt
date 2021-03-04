@@ -29,6 +29,15 @@ interface ApiService {
     @GET("api/v3/users/me")
     fun getLoginUserInfo(@Header("Authorization") token: String): Observable<UserBean>
 
+    @GET("api/v3/users/{login}")
+    fun getUserInfo(@Path("login") login: String): Observable<UserBean>
+
+    @POST("api/v3/users/{follow_user}/follow")
+    fun followUser(@Path("follow_user") follow_user: String): Observable<UserBean>
+
+    @POST("api/v3/users/{follow_user}/unfollow")
+    fun unFollowUser(@Path("follow_user") follow_user: String): Observable<UserBean>
+
     //话题列表：最新
     @GET("api/v3/topics?type=last")
     fun getTopicList(
@@ -42,6 +51,11 @@ interface ApiService {
         @Query("offset") offset: Int, @Query("limit") limit: Int
     ): Observable<TopicListBean>
 
+    //话题列表：最新
+    @GET("api/v3/users/{login}/topics")
+    fun getTopicListByUser(
+        @Path("login") login: String
+    ): Observable<TopicListBean>
 
     //话题详情
     @GET("api/v3/topics/{topic_id}")

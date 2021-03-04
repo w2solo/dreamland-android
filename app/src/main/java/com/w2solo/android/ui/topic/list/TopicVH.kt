@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.w2solo.android.R
+import com.w2solo.android.app.AppConfigs
 import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.adapter.EasyHolder
 import com.w2solo.android.ui.topic.detail.TopicDetailFragment
@@ -33,7 +34,7 @@ class TopicVH(itemView: View) : EasyHolder(itemView) {
             sb.append("@${user.name}")
         }
         if (topic.repliesCount > 0) {
-            sb.append("·")
+            sb.append(AppConfigs.MIDDLE_DOT)
                 .append(
                     itemView.context.getString(
                         R.string.topic_replies_count,

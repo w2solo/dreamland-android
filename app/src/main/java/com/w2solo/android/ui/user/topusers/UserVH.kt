@@ -1,5 +1,6 @@
 package com.w2solo.android.ui.user.topusers
 
+import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
@@ -9,6 +10,8 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.w2solo.android.R
 import com.w2solo.android.data.entity.User
 import com.w2solo.android.ui.base.adapter.EasyHolder
+import com.w2solo.android.ui.commonfrag.CommonFragActivity
+import com.w2solo.android.ui.user.userinfo.UserInfoFrag
 
 class UserVH(itemView: View) : EasyHolder(itemView) {
 
@@ -26,5 +29,10 @@ class UserVH(itemView: View) : EasyHolder(itemView) {
                 .into(userAvatar)
         }
         userName.text = "${user.name}@${user.login}"
+        itemView.setOnClickListener {
+            val args = Bundle()
+            args.putParcelable(UserInfoFrag.EXTRA_USER, user)
+            CommonFragActivity.start(it.context, R.string.user_info_title, args)
+        }
     }
 }

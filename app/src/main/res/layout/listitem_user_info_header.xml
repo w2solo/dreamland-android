@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/settings_account_layout"
+        style="@style/AppCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/keyline_vertical"
+        android:background="@drawable/bg_selector_surface"
+        android:gravity="center_vertical"
+        android:padding="@dimen/keyline_vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="@string/account_avatar_contd"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            app:shapeAppearance="@style/LargeAvatarStyle" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/keyline_horizontal"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_18"
+                android:textStyle="bold"
+                tools:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/user_location"
+                style="@style/CommonDescAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_8"
+                android:clickable="false"
+                android:focusable="false"
+                tools:text="@string/app_name" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/user_info_btn_follow_status"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="36dp"
+            android:minHeight="36dp"
+            android:paddingLeft="@dimen/keyline_8"
+            android:paddingRight="@dimen/keyline_8"
+            android:text="@string/not_followed"
+            android:textColor="@color/text_color_desc_accent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/user_count_following"
+            style="@style/UserInfoCount">
+
+            <TextView
+                android:id="@+id/user_count_following_value"
+                style="@style/UserInfoCount_Num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="12" />
+
+            <TextView
+                style="@style/CommonDescAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_following" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/user_count_follower"
+            style="@style/UserInfoCount">
+
+            <TextView
+                android:id="@+id/user_count_follower_value"
+                style="@style/UserInfoCount_Num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="12" />
+
+            <TextView
+                style="@style/CommonDescAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_follower" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/user_count_score"
+            style="@style/UserInfoCount"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/user_count_score_value"
+                style="@style/UserInfoCount_Num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="12" />
+
+            <TextView
+                style="@style/CommonDescAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="积分" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

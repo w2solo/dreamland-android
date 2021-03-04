@@ -14,7 +14,7 @@ class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.P
     private val pageSize = 20
     private var pageIndex = 0
 
-    override fun loadList(isRefresh: Boolean, nodeId: Long) {
+    override fun loadListByNode(isRefresh: Boolean, nodeId: Long) {
         if (isLoading) {
             return
         }
@@ -35,6 +35,24 @@ class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.P
             .subscribe({
                 isLoading = false
                 pageIndex++
+                view?.onGetList((it as TopicListBean).list, isRefresh)
+            }) {
+                isLoading = false
+                view?.onGetList(null, isRefresh)
+            }
+        runDisposable(disposable)
+    }
+
+    override fun loadListByUser(isRefresh: Boolean, userLogin: String) {
+        if (isLoading) {
+            return
+        }
+        isLoading = true
+        val disposable = Requester.apiService().getTopicListByUser(userLogin)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                isLoading = false
                 view?.onGetList((it as TopicListBean).list, isRefresh)
             }) {
                 isLoading = false

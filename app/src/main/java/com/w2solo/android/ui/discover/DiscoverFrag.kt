@@ -21,18 +21,9 @@ class DiscoverFrag : BaseFragment(), IScrollToTop {
                 super.onPageSelected(position)
             }
         })
-        tabLayout!!.addTab(
-            tabLayout.newTab().setText(R.string.discover_tab_products)
-//                .setCustomView(R.layout.common_tab)
-        )
-        tabLayout.addTab(
-            tabLayout.newTab().setText(R.string.discover_tab_new_hackers)
-//                .setCustomView(R.layout.common_tab)
-        )
-        tabLayout.addTab(
-            tabLayout.newTab().setText(R.string.discover_tab_top_hackers)
-//                .setCustomView(R.layout.common_tab)
-        )
+        tabLayout!!.addTab(tabLayout.newTab().setText(R.string.discover_tab_products))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.discover_tab_new_hackers))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.discover_tab_top_hackers))
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import com.w2solo.android.R;
 import com.w2solo.android.ui.account.LoginFragment;
 import com.w2solo.android.ui.topic.detail.TopicDetailFragment;
+import com.w2solo.android.ui.user.userinfo.UserInfoFrag;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,7 @@ class CommonFragPageConfigs {
     static {
         configs.put(R.string.title_login, LoginFragment.class);
         configs.put(R.string.title_topic_detail, TopicDetailFragment.class);
+        configs.put(R.string.user_info_title, UserInfoFrag.class);
     }
 
     @Nullable

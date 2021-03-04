@@ -11,7 +11,8 @@ import com.w2solo.android.R
 
 abstract class BaseToolbarActivity : BaseActivity(), Toolbar.OnMenuItemClickListener {
 
-    protected var appBarLayout: AppBarLayout? = null
+    private var appBarLayout: AppBarLayout? = null
+
     protected var mToolbar: Toolbar? = null
 
     private var isFirstResume = false
@@ -123,4 +124,6 @@ abstract class BaseToolbarActivity : BaseActivity(), Toolbar.OnMenuItemClickList
         super.invalidateOptionsMenu()
         createMenu()
     }
+
+    public fun getAppbarLayout() = appBarLayout
 }
