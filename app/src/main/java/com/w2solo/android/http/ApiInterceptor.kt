@@ -13,7 +13,7 @@ class ApiInterceptor : Interceptor {
         val builder = original.newBuilder()
             .addHeader("Accept", "application/json; charset=utf-8")
         if (token != null) {
-            builder.addHeader("Authorization", "Bearer ${token.refreshToken}")
+            builder.addHeader("Authorization", "Bearer ${token.accessToken}")
         }
         return chain.proceed(builder.build())
     }

@@ -50,7 +50,7 @@ abstract class DefaultAccountKeeper<T : IAccount> : IAccountKeeper<T> {
 
     private fun saveUserToken(token: Token?): Boolean {
         this.curToken = token
-        var value = "";
+        var value = ""
         if (token != null) {
             value = Gson().toJson(token)
         }
