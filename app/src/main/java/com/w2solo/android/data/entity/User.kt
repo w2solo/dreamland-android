@@ -49,6 +49,9 @@ class User() : IAccount, Parcelable {
     @SerializedName("meta")
     var meta: UserMeta? = null
 
+    @SerializedName("score")
+    var score: Int = 0
+
     constructor(parcel: Parcel) : this() {
         id = parcel.readLong()
         login = parcel.readString()
@@ -66,6 +69,8 @@ class User() : IAccount, Parcelable {
         bio = parcel.readString()
         email = parcel.readString()
         meta = parcel.readParcelable(UserMeta::class.java.classLoader)
+
+        score = parcel.readInt()
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
@@ -85,6 +90,8 @@ class User() : IAccount, Parcelable {
         dest?.writeString(bio)
         dest?.writeString(email)
         dest?.writeParcelable(meta, flags)
+
+        dest?.writeInt(score)
     }
 
     override fun describeContents() = 0

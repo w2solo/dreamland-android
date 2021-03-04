@@ -109,8 +109,7 @@
 
         <LinearLayout
             android:id="@+id/user_count_score"
-            style="@style/UserInfoCount"
-            android:visibility="gone">
+            style="@style/UserInfoCount">
 
             <TextView
                 android:id="@+id/user_count_score_value"
@@ -123,7 +122,7 @@
                 style="@style/CommonDescAppearance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="积分" />
+                android:text="@string/title_score" />
         </LinearLayout>
     </LinearLayout>
 

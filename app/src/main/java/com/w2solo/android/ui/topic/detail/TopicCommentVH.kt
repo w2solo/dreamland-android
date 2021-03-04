@@ -11,6 +11,7 @@ import com.w2solo.android.R
 import com.w2solo.android.data.entity.Action
 import com.w2solo.android.data.entity.Comment
 import com.w2solo.android.ui.base.adapter.EasyHolder
+import com.w2solo.android.ui.user.userinfo.UserInfoFrag
 
 class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
 
@@ -26,14 +27,15 @@ class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.ic_avatar_default)
                 .into(userAvatar)
+            val clickListener = View.OnClickListener {
+                UserInfoFrag.start(it.context, comment.user!!)
+            }
+            userAvatar.setOnClickListener(clickListener)
+            userName.setOnClickListener(clickListener)
         } else {
             userAvatar.setImageResource(R.drawable.ic_avatar_default)
             userName.text = null
         }
-        val clickListener = View.OnClickListener {
-        }
-        userAvatar.setOnClickListener(clickListener)
-        userName.setOnClickListener(clickListener)
 
         if (comment.isDeleted) {
             content.setText(R.string.action_deleted)

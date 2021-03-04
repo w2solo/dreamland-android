@@ -14,6 +14,7 @@ import com.w2solo.android.ui.base.broadcast.BaseBroadcastReceiver
 import com.w2solo.android.ui.base.fragment.BaseFragment
 import com.w2solo.android.ui.commonfrag.CommonFragActivity
 import com.w2solo.android.ui.topic.detail.TopicDetailFragment
+import com.w2solo.android.ui.user.userinfo.UserInfoFrag
 
 class SettingsFrag : BaseFragment() {
 
@@ -31,6 +32,7 @@ class SettingsFrag : BaseFragment() {
         }
         fview<View>(R.id.settings_account_layout)?.setOnClickListener {
             if (AccountManager.getInstance().isLogin) {
+                UserInfoFrag.start(it.context!!, AccountManager.getInstance().loginUser!!)
                 return@setOnClickListener
             }
             CommonFragActivity.start(it.context, R.string.title_login)

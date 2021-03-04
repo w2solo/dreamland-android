@@ -1,5 +1,7 @@
 package com.w2solo.android.ui.user.userinfo
 
+import android.content.Context
+import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Button
@@ -19,12 +21,19 @@ import com.w2solo.android.data.entity.UserMeta
 import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.activity.BaseToolbarActivity
 import com.w2solo.android.ui.base.fragment.BaseFragment
+import com.w2solo.android.ui.commonfrag.CommonFragActivity
 
 class UserInfoFrag : BaseFragment(), IScrollToTop, UserInfoContract.View {
 
     companion object {
         const val EXTRA_USER = "extra_user"
         const val EXTRA_LOGIN = "extra_login"
+
+        fun start(context: Context, user: User) {
+            val args = Bundle()
+            args.putParcelable(EXTRA_USER, user)
+            CommonFragActivity.start(context, R.string.user_info_title, args)
+        }
     }
 
     private lateinit var tabLayout: TabLayout
@@ -115,6 +124,7 @@ class UserInfoFrag : BaseFragment(), IScrollToTop, UserInfoContract.View {
         }
         fview<TextView>(R.id.user_count_following_value)?.text = "${user.followingCount}"
         fview<TextView>(R.id.user_count_follower_value)?.text = "${user.followersCount}"
+        fview<TextView>(R.id.user_count_score_value)?.text = "${user.score}"
 
         tabLayout.getTabAt(0)!!.text =
             "${getString(R.string.title_user_topic)}(${user.topicsCount})"
