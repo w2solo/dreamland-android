@@ -92,9 +92,9 @@ abstract class BaseFragment : LifeCycleFragment() {
         onClickListener: View.OnClickListener? = null
     ): T? {
         if (rootView != null) {
-            val view: T = rootView!!.findViewById(id)
+            val view: T? = rootView!!.findViewById(id)
             if (onClickListener != null) {
-                view.setOnClickListener(onClickListener)
+                view?.setOnClickListener(onClickListener)
             }
             return view
         }

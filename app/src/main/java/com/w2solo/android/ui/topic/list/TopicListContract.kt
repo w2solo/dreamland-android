@@ -11,6 +11,6 @@ interface TopicListContract {
     }
 
     interface Presenter : IPresenter<View> {
-        fun loadList(isRefresh: Boolean)
+        fun loadList(isRefresh: Boolean, nodeId: Long)
     }
 }

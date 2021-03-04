@@ -7,13 +7,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.Presenter,
+
     BasePresenter<TopicListContract.View>(view) {
 
     private var isLoading = false
     private val pageSize = 20
     private var pageIndex = 0
 
-    override fun loadList(isRefresh: Boolean) {
+    override fun loadList(isRefresh: Boolean, nodeId: Long) {
         if (isLoading) {
             return
         }
@@ -22,8 +23,14 @@ class TopicListPresenterImpl(view: TopicListContract.View) : TopicListContract.P
             pageIndex = 0
         }
         val offset = pageIndex * pageSize
-        val disposable = Requester.apiService().getTopicList(offset, pageSize)
-            .subscribeOn(Schedulers.io())
+
+        val observable =
+            if (nodeId > 0) {
+                Requester.apiService().getTopicListByNode(nodeId, offset, pageSize)
+            } else {
+                Requester.apiService().getTopicList(offset, pageSize)
+            }
+        val disposable = observable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 isLoading = false

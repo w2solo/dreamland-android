@@ -35,6 +35,14 @@ interface ApiService {
         @Query("offset") offset: Int, @Query("limit") limit: Int
     ): Observable<TopicListBean>
 
+    //话题列表：最新
+    @GET("api/v3/topics?type=last")
+    fun getTopicListByNode(
+        @Query("node_id") nodeId: Long,
+        @Query("offset") offset: Int, @Query("limit") limit: Int
+    ): Observable<TopicListBean>
+
+
     //话题详情
     @GET("api/v3/topics/{topic_id}")
     fun getTopicDetail(@Path("topic_id") topic_id: Long): Observable<TopicBean>

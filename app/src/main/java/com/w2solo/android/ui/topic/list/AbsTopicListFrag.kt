@@ -11,7 +11,8 @@ import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.fragment.BaseFragment
 
-class TopicListFrag : BaseFragment(), TopicListContract.View, IScrollToTop {
+abstract class AbsTopicListFrag : BaseFragment(), TopicListContract.View, IScrollToTop {
+
     private val dataList = arrayListOf<Topic>()
 
     private lateinit var refreshLayout: SwipeRefreshLayout
@@ -21,7 +22,7 @@ class TopicListFrag : BaseFragment(), TopicListContract.View, IScrollToTop {
 
     private val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
-    override fun getLayout() = R.layout.home_topic_list_fragment
+     abstract fun getCurrentNodeId(): Long
 
     override fun initViews() {
         fview<Toolbar>(R.id.home_topic_list)?.setOnClickListener {
@@ -37,11 +38,11 @@ class TopicListFrag : BaseFragment(), TopicListContract.View, IScrollToTop {
 
         refreshLayout = fview(R.id.swipe_refresh_layout)!!
         refreshLayout.setOnRefreshListener {
-            presenter.loadList(true)
+            presenter.loadList(true, getCurrentNodeId())
         }
         addLifecycleObserver(presenter)
         refreshLayout.isRefreshing = true
-        presenter.loadList(true)
+        presenter.loadList(true, getCurrentNodeId())
 
         rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -49,7 +50,7 @@ class TopicListFrag : BaseFragment(), TopicListContract.View, IScrollToTop {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
                     && layoutManager.findLastVisibleItemPosition() == dataList.size - 1
                 ) {
-                    presenter.loadList(false)
+                    presenter.loadList(false, getCurrentNodeId())
                 }
             }
         })

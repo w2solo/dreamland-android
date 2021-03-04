@@ -59,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/keyline_8"
+        android:autoLink="email|web|phone"
         android:textColor="@color/text_color_title_desc"
         android:textSize="@dimen/text_size_14"
         tools:text="为什么会开发这个工具？工作和生活需要，经常需要去多个网站搜索信息" />
