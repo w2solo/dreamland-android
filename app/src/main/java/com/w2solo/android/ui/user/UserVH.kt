@@ -1,4 +1,4 @@
-package com.w2solo.android.ui.user.topusers
+package com.w2solo.android.ui.user
 
 import android.text.TextUtils
 import android.view.View

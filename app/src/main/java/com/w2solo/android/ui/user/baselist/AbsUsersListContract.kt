@@ -1,13 +1,12 @@
-package com.w2solo.android.ui.user.topusers
+package com.w2solo.android.ui.user.baselist
 
 import com.w2solo.android.data.entity.User
 import com.w2solo.android.mvp.IPresenter
 import com.w2solo.android.mvp.IView
 
-interface TopUsersListContract {
+interface AbsUsersListContract {
 
     interface View : IView {
-
         fun onGetList(newList: List<User>?, isRefresh: Boolean)
     }
 

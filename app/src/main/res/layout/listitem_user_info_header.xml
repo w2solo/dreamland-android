@@ -124,6 +124,24 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title_score" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/user_count_favorite"
+            style="@style/UserInfoCount">
+
+            <TextView
+                android:id="@+id/user_count_favorite_value"
+                style="@style/UserInfoCount_Num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="12" />
+
+            <TextView
+                style="@style/CommonDescAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_favorite" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

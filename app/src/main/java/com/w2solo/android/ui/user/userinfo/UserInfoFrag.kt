@@ -22,6 +22,7 @@ import com.w2solo.android.ui.base.IScrollToTop
 import com.w2solo.android.ui.base.activity.BaseToolbarActivity
 import com.w2solo.android.ui.base.fragment.BaseFragment
 import com.w2solo.android.ui.commonfrag.CommonFragActivity
+import com.w2solo.android.ui.user.follow.UserFollowListFrag
 
 class UserInfoFrag : BaseFragment(), IScrollToTop, UserInfoContract.View {
 
@@ -123,8 +124,15 @@ class UserInfoFrag : BaseFragment(), IScrollToTop, UserInfoContract.View {
             location.visibility = View.GONE
         }
         fview<TextView>(R.id.user_count_following_value)?.text = "${user.followingCount}"
+        fview<View>(R.id.user_count_following)?.setOnClickListener {
+            val args = Bundle()
+            args.putString(UserFollowListFrag.EXTRA_USER_LOGIN, user.login)
+            CommonFragActivity.start(it.context, R.string.title_user_follow, args)
+        }
+
         fview<TextView>(R.id.user_count_follower_value)?.text = "${user.followersCount}"
         fview<TextView>(R.id.user_count_score_value)?.text = "${user.score}"
+        fview<TextView>(R.id.user_count_favorite_value)?.text = "${user.favoritesCount}"
 
         tabLayout.getTabAt(0)!!.text =
             "${getString(R.string.title_user_topic)}(${user.topicsCount})"

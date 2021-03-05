@@ -1,12 +1,12 @@
 package com.w2solo.android.ui.user.topusers
 
 import com.w2solo.android.http.Requester
-import com.w2solo.android.mvp.BasePresenter
+import com.w2solo.android.ui.user.baselist.AbsUserListPresenter
+import com.w2solo.android.ui.user.baselist.AbsUsersListContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class TopUserListPresenterImpl(view: TopUsersListContract.View) :
-    BasePresenter<TopUsersListContract.View>(view), TopUsersListContract.Presenter {
+class TopUserListPresenterImpl(view: AbsUsersListContract.View) : AbsUserListPresenter(view) {
 
     override fun loadList(isRefresh: Boolean) {
         val disposable = Requester.apiService().getTopUsers().subscribeOn(Schedulers.io())

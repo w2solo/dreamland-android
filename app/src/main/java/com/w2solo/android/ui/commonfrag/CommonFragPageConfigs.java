@@ -10,6 +10,7 @@ import com.w2solo.android.R;
 import com.w2solo.android.ui.account.LoginFragment;
 import com.w2solo.android.ui.topic.NodeTopicListFrag;
 import com.w2solo.android.ui.topic.detail.TopicDetailFragment;
+import com.w2solo.android.ui.user.follow.UserFollowListFrag;
 import com.w2solo.android.ui.user.userinfo.UserInfoFrag;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ class CommonFragPageConfigs {
         configs.put(R.string.title_topic_detail, TopicDetailFragment.class);
         configs.put(R.string.user_info_title, UserInfoFrag.class);
         configs.put(R.string.title_node_details, NodeTopicListFrag.class);
+        configs.put(R.string.title_user_follow, UserFollowListFrag.class);
     }
 
     @Nullable

@@ -112,4 +112,12 @@ interface ApiService {
     //节点列表
     @GET("api/v3/nodes")
     fun getNodeList(): Observable<NodeListBean>
+
+    //获取用户关注列表
+    @GET("api/v3/users/{login}/following")
+    fun getFollowingList(
+        @Path("login") login: String,
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
+    ): Observable<UserFollowingListBean>
 }
