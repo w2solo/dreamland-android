@@ -12,11 +12,13 @@ import com.w2solo.android.data.entity.Action
 import com.w2solo.android.data.entity.Comment
 import com.w2solo.android.ui.base.adapter.EasyHolder
 import com.w2solo.android.ui.user.userinfo.UserInfoFrag
+import com.w2solo.android.utils.CalendarUtil
 
 class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
 
     private val userAvatar = fview<ShapeableImageView>(R.id.comment_user_avatar)
     private val userName = fview<TextView>(R.id.comment_user_name)
+    private val time = fview<TextView>(R.id.comment_time)
     private val content = fview<TextView>(R.id.comment_content)
 
     fun bind(comment: Comment) {
@@ -36,7 +38,10 @@ class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
             userAvatar.setImageResource(R.drawable.ic_avatar_default)
             userName.text = null
         }
-
+        time.text = CalendarUtil.parseTimeForRead(
+            itemView.context,
+            CalendarUtil.parseTime(comment.createdTime)
+        )
         if (comment.isDeleted) {
             content.setText(R.string.action_deleted)
             content.isEnabled = false
