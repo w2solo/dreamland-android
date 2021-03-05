@@ -20,6 +20,16 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+
+##---------------Begin: proguard configuration for App  ----------
+-keep public class com.w2solo.android.R$*{
+    public static final int *;
+}
+-keep class com.w2solo.android.data.entity.** { *; }
+-keep class com.w2solo.android.http.result.** { *; }
+##---------------End: proguard configuration for App  ----------
+
+
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
 -keep class android.support.**{*;}
