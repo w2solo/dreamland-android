@@ -65,6 +65,7 @@
     <string name="title_user_topic">发帖</string>
     <string name="title_user_reply">回帖</string>
     <string name="title_user_follow">关注列表</string>
+    <string name="title_user_favorite">收藏列表</string>
 
     <!--    Node-->
     <string name="title_node_details">节点</string>

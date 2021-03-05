@@ -57,7 +57,8 @@ interface ApiService {
     @GET("api/v3/topics?type=last")
     fun getTopicListByNode(
         @Query("node_id") nodeId: Long,
-        @Query("offset") offset: Int, @Query("limit") limit: Int
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
     ): Observable<TopicListBean>
 
     //用户话题列表
@@ -65,6 +66,15 @@ interface ApiService {
     fun getTopicListByUser(
         @Path("login") login: String
     ): Observable<TopicListBean>
+
+    //用户的收藏列表
+    @GET("api/v3/users/{login}/favorites")
+    fun getFavoriteList(
+        @Path("login") login: String,
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
+    ): Observable<TopicListBean>
+
 
     //话题详情
     @GET("api/v3/topics/{topic_id}")
