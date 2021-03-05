@@ -27,6 +27,8 @@
 }
 -keep class com.w2solo.android.data.entity.** { *; }
 -keep class com.w2solo.android.http.result.** { *; }
+-keep class com.w2solo.android.app.account.** { *; }
+
 ##---------------End: proguard configuration for App  ----------
 
 
