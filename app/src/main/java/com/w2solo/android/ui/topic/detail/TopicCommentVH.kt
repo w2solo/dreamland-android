@@ -53,10 +53,11 @@ class TopicCommentVH(itemView: View) : EasyHolder(itemView) {
                 val textResId =
                     when (action) {
                         Action.Excellent -> R.string.action_excellent
-                        Action.Ban -> R.string.action_deleted
+                        Action.UnExcellent -> R.string.action_un_excellent
+                        Action.Ban -> R.string.action_ban
                         Action.Close -> R.string.action_close
                         Action.ReOpen -> R.string.action_reopen
-                        else -> R.string.action_reopen
+                        else -> R.string.action_unknow
                     }
                 content.setText(textResId)
             } else {

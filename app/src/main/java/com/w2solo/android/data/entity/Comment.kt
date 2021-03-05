@@ -62,9 +62,4 @@ class Comment() : Parcelable {
     fun canAction(): Boolean {
         return TextUtils.isEmpty(action) && !isDeleted
     }
-
-    fun canShow(): Boolean =
-        !isDeleted && (TextUtils.isEmpty(action) ||
-                (!TextUtils.equals(action, Action.Ban)
-                        && !TextUtils.equals(action, Action.Excellent)))
 }

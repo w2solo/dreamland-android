@@ -40,6 +40,8 @@
     <string name="comment_title">评论区</string>
 
     <string name="action_excellent">标记为精华帖</string>
+    <string name="action_un_excellent">移除加精</string>
+    <string name="action_ban">评论已经被屏蔽</string>
     <string name="action_deleted">评论已经被删除</string>
     <string name="action_close">关闭了讨论</string>
     <string name="action_reopen">重新开启了讨论</string>
