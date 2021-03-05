@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.w2solo.android.ui.base.viewpager2.ViewPagerAdapterDelegate
-import com.w2solo.android.ui.topic.UserTopicListFrag
+import com.w2solo.android.ui.topic.usertopics.UserTopicListFrag
 import com.w2solo.android.ui.user.userreplies.UserRepliesListFrag
 
 class UserInfoPagerAdapter(private val userLogin: String, frag: Fragment) :

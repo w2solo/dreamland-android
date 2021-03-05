@@ -9,7 +9,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.w2solo.android.R
 import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.adapter.EasyHolder
-import com.w2solo.android.ui.topic.NodeTopicListFrag
+import com.w2solo.android.ui.topic.nodetopics.NodeTopicListFrag
 import com.w2solo.android.ui.user.userinfo.UserInfoFrag
 import com.w2solo.android.utils.CalendarUtil
 

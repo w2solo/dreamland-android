@@ -60,7 +60,7 @@ interface ApiService {
         @Query("offset") offset: Int, @Query("limit") limit: Int
     ): Observable<TopicListBean>
 
-    //话题列表：最新
+    //用户话题列表
     @GET("api/v3/users/{login}/topics")
     fun getTopicListByUser(
         @Path("login") login: String

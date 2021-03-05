@@ -25,6 +25,7 @@ class UserFollowListPresenterImpl(private val userLogin: String, view: AbsUsersL
                 return
             }
         }
+        isLoading = true
         val offset = pageIndex * pageSize
         val disposable = Requester.apiService()
             .getFollowingList(userLogin, offset, pageSize)

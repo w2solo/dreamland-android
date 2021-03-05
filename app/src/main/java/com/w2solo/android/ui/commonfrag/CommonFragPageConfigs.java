@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import com.w2solo.android.R;
 import com.w2solo.android.ui.account.LoginFragment;
-import com.w2solo.android.ui.topic.NodeTopicListFrag;
+import com.w2solo.android.ui.topic.nodetopics.NodeTopicListFrag;
 import com.w2solo.android.ui.topic.detail.TopicDetailFragment;
 import com.w2solo.android.ui.user.follow.UserFollowListFrag;
 import com.w2solo.android.ui.user.userinfo.UserInfoFrag;

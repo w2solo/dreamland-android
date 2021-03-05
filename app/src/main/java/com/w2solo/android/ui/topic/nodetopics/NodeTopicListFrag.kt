@@ -1,12 +1,13 @@
-package com.w2solo.android.ui.topic
+package com.w2solo.android.ui.topic.nodetopics
 
 import android.content.Context
 import android.os.Bundle
 import com.w2solo.android.R
 import com.w2solo.android.ui.commonfrag.CommonFragActivity
 import com.w2solo.android.ui.topic.list.AbsTopicListFrag
+import com.w2solo.android.ui.topic.list.TopicListContract
 
-class NodeTopicListFrag : AbsTopicListFrag() {
+open class NodeTopicListFrag : AbsTopicListFrag() {
 
     private var currentNode: Long = -1
 
@@ -24,10 +25,21 @@ class NodeTopicListFrag : AbsTopicListFrag() {
 
     override fun getLayout() = R.layout.simple_topic_list_fragment
 
-    override fun getCurrentNodeId() = currentNode
+    override fun getPresenter(view: TopicListContract.View) =
+        NodeTopicsListPresenterImpl(currentNode, view)
 
     override fun initViews() {
-        currentNode = arguments?.getLong(EXTRA_NODE_ID, -1L)!!
+        currentNode = arguments?.getLong(EXTRA_NODE_ID) ?: -1L
         super.initViews()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putLong(EXTRA_NODE_ID, currentNode)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        currentNode = savedInstanceState?.getLong(EXTRA_NODE_ID) ?: -1L
     }
 }
