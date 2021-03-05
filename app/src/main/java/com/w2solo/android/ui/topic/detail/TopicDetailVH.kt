@@ -11,6 +11,7 @@ import com.w2solo.android.data.entity.Topic
 import com.w2solo.android.ui.base.adapter.EasyHolder
 import com.w2solo.android.ui.topic.NodeTopicListFrag
 import com.w2solo.android.ui.user.userinfo.UserInfoFrag
+import com.w2solo.android.utils.CalendarUtil
 
 class TopicDetailVH(itemView: View) : EasyHolder(itemView) {
 
@@ -41,7 +42,7 @@ class TopicDetailVH(itemView: View) : EasyHolder(itemView) {
             }
             userName.text = "${user.name}@${user.login}"
         }
-        time.text = topic.createdTime
+        time.text = CalendarUtil.parseTime(topic.createdTime!!)
         if (!TextUtils.isEmpty(topic.nodeName)) {
             topicNodeLayout.visibility = View.VISIBLE
             topicNode.text = topic.nodeName
