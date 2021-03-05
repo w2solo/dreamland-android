@@ -60,13 +60,6 @@ class CommentBar(context: Context?, attrs: AttributeSet?) : LinearLayout(context
         }
     }
 
-    override fun setOnClickListener(l: OnClickListener?) {
-        if (!AccountManager.checkLogin(context)) {
-            return
-        }
-        super.setOnClickListener(l)
-    }
-
     override fun onDetachedFromWindow() {
         presenter?.onDestroy(null)
         super.onDetachedFromWindow()
