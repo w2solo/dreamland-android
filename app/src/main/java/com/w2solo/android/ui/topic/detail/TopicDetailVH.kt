@@ -29,7 +29,7 @@ class TopicDetailVH(itemView: View) : EasyHolder(itemView) {
         val user = topic.user
         if (user != null) {
             userLayout.setOnClickListener {
-                UserInfoFrag.start(it.context, user!!)
+                UserInfoFrag.start(it.context, user)
             }
             if (!TextUtils.isEmpty(user.avatar_url)) {
                 Glide.with(itemView.context)
@@ -42,7 +42,10 @@ class TopicDetailVH(itemView: View) : EasyHolder(itemView) {
             }
             userName.text = "${user.name}@${user.login}"
         }
-        time.text = CalendarUtil.parseTime(topic.createdTime!!)
+        time.text = CalendarUtil.parseTimeForRead(
+            itemView.context,
+            CalendarUtil.parseTime(topic.createdTime!!)
+        )
         if (!TextUtils.isEmpty(topic.nodeName)) {
             topicNodeLayout.visibility = View.VISIBLE
             topicNode.text = topic.nodeName

@@ -50,6 +50,10 @@
     <string name="comment_option_delete">删除评论</string>
     <string name="comment_option_delete_msg">确定删除你这条评论？</string>
 
+    <string name="comment_time_just_now">刚刚</string>
+    <string name="comment_time_in_minutes">%1$s分钟前</string>
+    <string name="comment_time_in_hours">%1$s小时前</string>
+
     <!--    Users-->
     <string name="followed">已关注</string>
     <string name="not_followed">关注</string>
