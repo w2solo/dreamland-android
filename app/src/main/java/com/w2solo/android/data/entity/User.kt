@@ -37,6 +37,9 @@ class User() : IAccount, Parcelable {
     @SerializedName("favorites_count")
     var favoritesCount: Int = 0
 
+    @SerializedName("level")
+    var level: String? = null
+
     @SerializedName("level_name")
     var levelName: String? = null
 

@@ -40,15 +40,35 @@
                 android:textStyle="bold"
                 tools:text="@string/app_name" />
 
-            <TextView
-                android:id="@+id/user_location"
-                style="@style/CommonDescAppearance"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyline_8"
-                android:clickable="false"
-                android:focusable="false"
-                tools:text="@string/app_name" />
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/user_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_level_member"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textColor="?colorOnSecondary"
+                    android:textSize="@dimen/text_size_desc"
+                    tools:text="@string/level_member" />
+
+                <TextView
+                    android:id="@+id/user_location"
+                    style="@style/CommonDescAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/keyline_8"
+                    android:clickable="false"
+                    android:focusable="false"
+                    tools:text="@string/app_name" />
+            </LinearLayout>
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton

@@ -20,4 +20,6 @@
     <dimen name="card_round_corner_large">12dp</dimen>
     <dimen name="card_round_corner_round">32dp</dimen>
     <dimen name="toolbar_elevation">2dp</dimen>
+
+    <dimen name="level_badge_corner">2dp</dimen>
 </resources>

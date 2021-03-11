@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="level_admin">#FF5722</color>
+    <color name="level_maintainer">#4CAF50</color>
+    <color name="level_member">#FF9500</color>
+    <color name="level_other">#AAAAAA</color>
 </resources>

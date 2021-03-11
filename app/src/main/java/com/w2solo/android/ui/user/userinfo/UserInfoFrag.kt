@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.tabs.TabLayout
 import com.w2solo.android.R
-import com.w2solo.android.app.AppConfigs
 import com.w2solo.android.app.account.AccountManager
+import com.w2solo.android.data.UserLevel
 import com.w2solo.android.data.entity.User
 import com.w2solo.android.data.entity.UserMeta
 import com.w2solo.android.ui.base.IScrollToTop
@@ -100,6 +100,7 @@ class UserInfoFrag : BaseFragment(), IScrollToTop, UserInfoContract.View {
         }
         val avatar = fview<ImageView>(R.id.user_avatar)!!
         val name = fview<TextView>(R.id.user_name)!!
+        val level = fview<TextView>(R.id.user_level)
         val location = fview<TextView>(R.id.user_location)!!
         name.text = "${user.name}@${user.login}"
         if (!TextUtils.isEmpty(user.avatar_url)) {
@@ -111,16 +112,18 @@ class UserInfoFrag : BaseFragment(), IScrollToTop, UserInfoContract.View {
         } else {
             avatar.setImageResource(R.drawable.ic_avatar_default)
         }
-        val sb = StringBuilder()
-        if (!TextUtils.isEmpty(user.levelName)) {
-            sb.append(user.levelName)
+        when (user.level) {
+            UserLevel.Admin -> level!!.setBackgroundResource(R.drawable.bg_badge_level_admin)
+            UserLevel.Maintainer -> level!!.setBackgroundResource(R.drawable.bg_badge_level_maintainer)
+            UserLevel.Member -> level!!.setBackgroundResource(R.drawable.bg_badge_level_member)
+            UserLevel.Blocked -> level!!.setBackgroundResource(R.drawable.bg_badge_level_member)
+            else -> level!!.setBackgroundResource(R.drawable.bg_badge_level_other)
         }
+        level.text = user.levelName
+
         if (!TextUtils.isEmpty(user.location)) {
-            sb.append(AppConfigs.MIDDLE_DOT).append(user.location)
-        }
-        if (sb.isNotEmpty()) {
             location.visibility = View.VISIBLE
-            location.text = sb
+            location.text = user.location
         } else {
             location.visibility = View.GONE
         }
