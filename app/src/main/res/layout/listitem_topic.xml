@@ -29,8 +29,7 @@
             android:id="@+id/topic_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:singleLine="true"
+            android:maxLines="2"
             tools:text="Android 下拉刷新 Swip" />
 
         <TextView
@@ -38,7 +37,6 @@
             style="@style/CommonDescAppearance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/keyline_8"
             tools:text="Android 下拉刷新 SwipeRefreshLayout 的实现" />
     </LinearLayout>
 
