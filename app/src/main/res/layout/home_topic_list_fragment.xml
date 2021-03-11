@@ -29,7 +29,7 @@
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <com.w2solo.android.ui.widget.AppSwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,5 +40,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/listitem_topic" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.w2solo.android.ui.widget.AppSwipeRefreshLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

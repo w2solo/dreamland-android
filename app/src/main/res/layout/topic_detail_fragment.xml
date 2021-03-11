@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <com.w2solo.android.ui.widget.AppSwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             tools:itemCount="5"
             tools:listitem="@layout/listitem_topic_comment" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.w2solo.android.ui.widget.AppSwipeRefreshLayout>
 
     <include
         layout="@layout/include_comment_bar"
